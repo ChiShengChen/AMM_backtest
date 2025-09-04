@@ -1,5 +1,7 @@
 # AMM 動態再平衡回測系統
 
+> **🚀 一行命令回測**: `./run_single.sh BTCUSDC 1d 50`
+
 ## 🎯 項目概述
 
 這是一個專門用於 AMM（自動化做市商，主要針對 Uniswap V3）動態再平衡策略回測的 Python 系統。系統能夠比較固定策略與動態策略的表現，分析 IL/LVR 和摩擦成本，並通過參數優化找到最佳策略配置。
@@ -229,6 +231,77 @@ results/
 └── INDEX.md                  # 目錄索引
 ```
 
+## 🚀 快速開始
+
+### 一行命令回測新CSV
+
+```bash
+# 最推薦：使用腳本回測
+./run_single.sh BTCUSDC 1d 50
+
+# 直接命令回測
+python run.py full --pool BTCUSDC --freq 1d --n-trials 50
+```
+
+**參數說明**：
+- `BTCUSDC`: 替換為您的幣種代碼
+- `1d`: 數據頻率 (1d=日線, 1h=小時線)  
+- `50`: 優化試驗次數
+
+**結果位置**：
+- 📊 圖表：`reports/figs/btcusdc/`
+- 📈 數據：`results/strategy_*_*.json`
+- 📋 報告：`results/strategy_report_*.txt`
+
+### 📁 數據文件結構設置
+
+系統期望的數據文件結構：
+```
+data/
+├── BTCUSDC/
+│   └── price_1d.csv
+├── ETHUSDC/
+│   └── price_1d.csv
+└── USDCUSDT/
+    └── price_1d.csv
+```
+
+**如果您有5年數據文件** (如 `data/5year_daily/ETHUSDC_1d_20200905_20250903.csv`)：
+
+```bash
+# 創建目錄結構
+mkdir -p data/ETHUSDC data/USDCUSDT
+
+# 創建符號鏈接 (推薦)
+ln -sf ../5year_daily/ETHUSDC_1d_20200905_20250903.csv data/ETHUSDC/price_1d.csv
+ln -sf ../5year_daily/USDCUSDT_1d_20200905_20250903.csv data/USDCUSDT/price_1d.csv
+
+# 或者複製文件
+cp data/5year_daily/ETHUSDC_1d_20200905_20250903.csv data/ETHUSDC/price_1d.csv
+cp data/5year_daily/USDCUSDT_1d_20200905_20250903.csv data/USDCUSDT/price_1d.csv
+```
+
+### 📊 回測結果示例
+
+**USDCUSDT 5年回測結果** (2020-2025):
+```
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━┓
+┃ Strategy          ┃ APR (%) ┃ MDD (%) ┃ Sharpe ┃ Calmar ┃ Rebalances ┃
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━┩
+│ Baseline-Static   │ -0.00   │ 0.90    │ -0.00  │ -0.01  │ 2          │
+│ Baseline-Fixed    │ -0.00   │ 1.30    │ -0.00  │ -0.01  │ 15         │
+│ Dynamic-Vol       │ -0.00   │ 1.60    │ -0.00  │ -0.01  │ 28         │
+│ Dynamic-Inventory │ -0.00   │ 0.30    │ -0.00  │ -0.00  │ 10         │
+└───────────────────┴─────────┴─────────┴────────┴────────┴────────────┘
+```
+
+**最佳參數**：
+- K寬度倍數: 1.96
+- 價格偏差閾值: 113.85 bps
+- 再平衡冷卻時間: 41小時
+
+---
+
 ## 🛠️ 使用方法
 
 ### 1. 環境設置
@@ -256,6 +329,31 @@ pip install -r requirements.txt
 ```
 
 ### 3. 運行回測
+
+#### 🚀 一行命令快速回測
+
+```bash
+# 最簡單的一行命令 (推薦)
+./run_single.sh BTCUSDC 1d 50
+
+# 直接使用 Python 命令
+python run.py full --pool BTCUSDC --freq 1d --n-trials 50
+
+# 完整參數版本
+python run.py full --pool BTCUSDC --freq 1d --study-name "BTCUSDC_$(date +%Y%m%d_%H%M%S)" --n-trials 50 --config configs/btcusdc_experiment.yaml
+```
+
+#### 📋 參數說明
+- `BTCUSDC`: 幣種代碼 (可替換為 ETHUSDC, USDCUSDT 等)
+- `1d`: 數據頻率 (1d=日線, 1h=小時線)
+- `50`: 優化試驗次數 (建議 20-100)
+
+#### ⚠️ 重要注意事項
+1. **數據文件必須存在**: 確保 `data/{POOL_NAME}/price_{frequency}.csv` 文件存在
+2. **頻率匹配**: 數據頻率必須與 `--freq` 參數匹配
+3. **study-name**: 如果使用直接Python命令，必須提供 `--study-name` 參數
+
+#### 🔧 其他回測方式
 
 ```bash
 # 快速測試

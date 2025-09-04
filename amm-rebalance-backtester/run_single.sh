@@ -22,7 +22,7 @@ echo "=== 運行 $POOL 回測 ==="
 python run.py full \
     --pool $POOL \
     --freq $FREQ \
-    --study-name "${POOL,,}_${FREQ}_${TIMESTAMP}" \
+    --study-name "${POOL}_${FREQ}_${TIMESTAMP}" \
     --n-trials $TRIALS
 
 if [ $? -eq 0 ]; then

@@ -96,8 +96,10 @@ class PlotGenerator:
             mdd = strategy_data.get('mdd', 0)
             
             # 模擬淨值曲線，基於 APR 和 MDD
-            days = 365
-            daily_return = (1 + apr/100) ** (1/365) - 1
+            # 使用實際數據天數，如果沒有則使用365天
+            price_data_info = results.get('price_data_info', {})
+            days = price_data_info.get('total_days', 365)
+            daily_return = (1 + apr/100) ** (1/days) - 1
             
             # 創建更真實的淨值曲線
             np.random.seed(42 + i)  # 固定隨機種子
@@ -607,7 +609,10 @@ class PlotGenerator:
         colors = ['#A2D9CE', '#66C2A5', '#F0E68C', '#FFD700']
         
         # 左圖：LVR vs 時間
-        time_periods = np.linspace(1, 365, 100)  # 1 天到 1 年
+        # 使用實際數據天數，如果沒有則使用365天
+        price_data_info = results.get('price_data_info', {})
+        total_days = price_data_info.get('total_days', 365)
+        time_periods = np.linspace(1, total_days, 100)  # 1 天到總天數
         
         for i, (strategy_name, strategy_data) in enumerate(strategies.items()):
             if i >= len(colors):
