@@ -1,0 +1,5 @@
+strategy,delay_description,total_return_pct,max_drawdown_pct,sharpe_ratio,rebalance_count,has_mdd,status
+classic,"Ultra conservative triggers (2% gap, 40% drift, 1 week time)",42447.31671676601,0.0,3.91931402328738,408,False,SUCCESS
+channel_multiplier,"Extremely conservative triggers (3% gap, 50% drift, 10 days time)",32743.998150278137,0.0,3.9830332939614155,435,False,SUCCESS
+bollinger,"Ultra conservative triggers (4% gap, 60% drift, 2 weeks time)",24217.925671609966,0.0,4.312448113221359,454,False,SUCCESS
+keltner,"Maximum conservative triggers (5% gap, 70% drift, 3 weeks time)",17666.781884563254,0.0,4.073181120662711,258,False,SUCCESS

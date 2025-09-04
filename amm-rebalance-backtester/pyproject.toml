@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "amm-rebalance-backtester"
+version = "0.1.0"
+description = "AMM Dynamic Rebalancing and Parameter Optimization Backtester"
+authors = [{name = "Quant Team", email = "team@example.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pydantic>=2.0.0",
+    "matplotlib>=3.7.0",
+    "optuna>=3.0.0",
+    "pyyaml>=6.0",
+    "rich>=13.0.0",
+    "tqdm>=4.65.0",
+    "polars>=0.19.0",
+    "numba>=0.57.0",
+    "click>=8.1.0",
+    "python-dateutil>=2.8.0",
+    "pytz>=2023.3",
+    "seaborn>=0.12.0",
+    "scikit-learn>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+]
+
+[project.scripts]
+amm-backtest = "amm_rebalance_backtester.run:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 88

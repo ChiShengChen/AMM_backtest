@@ -1,0 +1,5 @@
+strategy,imperfection_level,rebalance_failure_rate,liquidity_shortage_rate,market_impact_rate,total_return_pct,max_drawdown_pct,sharpe_ratio,rebalance_count,has_mdd,status
+classic_perfect,0.0,0.0,0.0,0.0,215615.9030360029,0.0,0.8973017364603771,435,False,SUCCESS
+classic_slight_imperfect,0.3,0.1,0.1,0.05,215615.9030360029,0.0,0.8973017364603771,435,False,SUCCESS
+classic_moderate_imperfect,0.6,0.3,0.2,0.1,215615.9030360029,0.0,0.8973017364603771,435,False,SUCCESS
+classic_highly_imperfect,0.9,0.5,0.4,0.2,215615.9030360029,0.0,0.8973017364603771,435,False,SUCCESS

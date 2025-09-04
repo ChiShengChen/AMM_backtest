@@ -1,0 +1,58 @@
+# BTCUSDC Experiment Configuration
+random_state: 42
+pool: BTCUSDC
+frequency: "1d"  # BTC data is daily
+fee_mode: "proxy"  # Use proxy mode for BTC
+initial_capital: 100000.0
+
+frictions:
+  gas_usd_per_rebalance: 5.0
+  slippage_bps: 1.0
+  mev_bps: 0.5
+  mgmt_fee_bps_per_year: 0.0
+
+wfa:
+  train_days: 180
+  valid_days: 60
+  test_days: 120
+  roll_stride_days: 30
+  n_trials: 20
+
+strategies:
+  baseline_static:
+    enabled: true
+    width_pct: 500.0
+    rebalance_cooldown_hours: 168
+  
+  baseline_fixed:
+    enabled: true
+    width_pct: 50.0
+    price_deviation_bps: 50
+    rebalance_cooldown_hours: 24
+  
+  dyn_vol:
+    enabled: true
+    vol_estimator: "ewma"
+    k_width: [0.8, 2.0]
+    price_deviation_bps: [20, 120]
+    rebalance_cooldown_hours: [6, 48]
+  
+  dyn_inventory:
+    enabled: true
+    skew_threshold_pct: [5.0, 25.0]
+    fee_density_window_h: [6, 48]
+    reinvest_frequency_h: [12, 72]
+
+engine:
+  min_liquidity: 1000.0
+  max_slippage: 0.05
+  rebalance_buffer: 0.02
+
+reporting:
+  save_trades: true
+  save_positions: true
+  bootstrap_samples: 1000
+  confidence_level: 0.95
+  plot_style: "seaborn"
+  dpi: 300
+  figsize: [12, 8]

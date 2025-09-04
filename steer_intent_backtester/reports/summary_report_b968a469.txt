@@ -1,0 +1,54 @@
+================================================================================
+BACKTEST SUMMARY REPORT
+================================================================================
+
+Run ID: b968a469
+Pair: Unknown
+Interval: Unknown
+Strategy: Unknown
+Period: Unknown to Unknown
+Total Bars: 721
+
+STRATEGY PERFORMANCE:
+----------------------------------------
+Total Return: 16.07%
+Max Drawdown: 0.00%
+Sharpe Ratio: 1.87
+Rebalance Count: 110
+Total Fees Paid: $0.55
+
+BASELINE PERFORMANCE:
+----------------------------------------
+HODL 50:50 Return: 1.51%
+HODL 50:50 Max DD: -10.11%
+HODL 50:50 Sharpe: 0.13
+
+Single Asset Return: 2.44%
+Single Asset Max DD: -19.30%
+Single Asset Sharpe: 0.14
+
+IMPERMANENT LOSS & LVR:
+----------------------------------------
+Average IL: 5.23%
+Maximum IL: -3.78%
+Average LVR: -5.23%
+Maximum LVR: -17.19%
+
+STRATEGY DETAILS:
+----------------------------------------
+name: ClassicStrategy
+initialized: True
+rebalance_count: 110
+total_fees_earned: 0.0
+current_positions: 1
+last_update: 2024-01-30 23:00:00
+width_mode: percent
+width_value: 10.0
+placement_mode: center
+curve_type: uniform
+max_positions: 1
+trigger_stats: {'gap_from_center': {'trigger_count': 719, 'last_triggered': Timestamp('2024-01-31 07:00:00')}, 'range_inactive': {'trigger_count': 719, 'last_triggered': Timestamp('2024-01-31 07:00:00')}, 'percent_drift': {'trigger_count': 2, 'last_triggered': Timestamp('2024-01-23 10:00:00')}, 'time_elapsed': {'trigger_count': 30, 'last_triggered': Timestamp('2024-01-31 07:00:00')}}
+
+================================================================================
+Report generated on: 2025-09-01 20:29:47
+================================================================================

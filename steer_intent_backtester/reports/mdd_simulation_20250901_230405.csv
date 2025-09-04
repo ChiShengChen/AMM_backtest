@@ -1,0 +1,6 @@
+strategy,total_return_pct,max_drawdown_pct,sharpe_ratio,rebalance_count,has_mdd,status
+conservative_classic,0,0,0,0,False,FAILED
+delayed_rebalancing,0,0,0,0,False,FAILED
+costly_rebalancing,0,0,0,0,False,FAILED
+volatility_adaptive,0,0,0,0,False,FAILED
+minimal_rebalancing,0,0,0,0,False,FAILED
