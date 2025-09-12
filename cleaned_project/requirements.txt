@@ -1,0 +1,28 @@
+# 核心依賴
+pandas>=1.5.0
+numpy>=1.21.0
+scikit-learn>=1.1.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# 量子機器學習
+qiskit>=0.40.0
+pennylane>=0.28.0
+
+# 優化和工具
+optuna>=3.0.0
+click>=8.0.0
+rich>=12.0.0
+tqdm>=4.64.0
+
+# 數據處理
+yfinance>=0.1.70
+ta-lib>=0.4.24
+
+# 可視化
+plotly>=5.0.0
+kaleido>=0.2.1
+
+# 其他工具
+joblib>=1.1.0
+scipy>=1.9.0

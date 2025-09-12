@@ -1,0 +1,5 @@
+strategy,delay_hours,failure_rate,total_return_pct,max_drawdown_pct,sharpe_ratio,rebalance_count,has_mdd,status
+classic_1h_delay,1,0.05,0,0,0,0,False,FAILED
+classic_6h_delay,6,0.1,0,0,0,0,False,FAILED
+classic_24h_delay,24,0.15,0,0,0,0,False,FAILED
+classic_48h_delay,48,0.2,0,0,0,0,False,FAILED

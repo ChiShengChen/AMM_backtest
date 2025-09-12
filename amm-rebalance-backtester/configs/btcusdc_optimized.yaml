@@ -1,0 +1,60 @@
+# BTCUSDC Optimized Configuration for Dynamic Strategies
+random_state: 42
+pool: BTCUSDC
+frequency: "1d"
+fee_mode: "proxy"
+initial_capital: 100000.0
+
+frictions:
+  gas_usd_per_rebalance: 3.0  # 降低Gas成本
+  slippage_bps: 0.5  # 降低滑點
+  mev_bps: 0.3  # 降低MEV成本
+  mgmt_fee_bps_per_year: 0.0
+
+wfa:
+  train_days: 180
+  valid_days: 60
+  test_days: 120
+  roll_stride_days: 30
+  n_trials: 100  # 增加試驗次數
+
+strategies:
+  baseline_static:
+    enabled: true
+    width_pct: 500.0
+    rebalance_cooldown_hours: 168
+  
+  baseline_fixed:
+    enabled: true
+    width_pct: 50.0
+    price_deviation_bps: 50
+    rebalance_cooldown_hours: 24
+  
+  # 優化Dynamic-Vol策略參數
+  dyn_vol:
+    enabled: true
+    vol_estimator: "ewma"
+    k_width: [1.0, 3.0]  # 擴大K寬度範圍，允許更激進的定位
+    price_deviation_bps: [10, 80]  # 降低觸發閾值，更頻繁再平衡
+    rebalance_cooldown_hours: [2, 24]  # 縮短冷卻時間，更積極管理
+  
+  # 優化Dynamic-Inventory策略參數
+  dyn_inventory:
+    enabled: true
+    skew_threshold_pct: [3.0, 15.0]  # 降低庫存偏差閾值
+    fee_density_window_h: [3, 24]  # 縮短費用密度窗口
+    reinvest_frequency_h: [6, 48]  # 更頻繁的費用再投資
+
+engine:
+  min_liquidity: 1000.0
+  max_slippage: 0.03  # 降低最大滑點
+  rebalance_buffer: 0.01  # 降低再平衡緩衝
+
+reporting:
+  save_trades: true
+  save_positions: true
+  bootstrap_samples: 1000
+  confidence_level: 0.95
+  plot_style: "seaborn"
+  dpi: 300
+  figsize: [12, 8]

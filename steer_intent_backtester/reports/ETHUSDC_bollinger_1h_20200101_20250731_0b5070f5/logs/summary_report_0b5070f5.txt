@@ -1,0 +1,54 @@
+================================================================================
+BACKTEST SUMMARY REPORT
+================================================================================
+
+Run ID: 0b5070f5
+Pair: ETHUSDC
+Interval: 1h
+Strategy: bollinger
+Period: 2020-01-01 07:00:00 to 2025-07-31 06:00:00
+Total Bars: 44941
+
+STRATEGY PERFORMANCE:
+----------------------------------------
+Total Return: 170183.31%
+Max Drawdown: 0.00%
+Sharpe Ratio: 7.30
+Rebalance Count: 8686
+Total Fees Paid: $0.00
+
+BASELINE PERFORMANCE:
+----------------------------------------
+HODL 50:50 Return: 732.60%
+HODL 50:50 Max DD: -54.10%
+HODL 50:50 Sharpe: 0.20
+
+Single Asset Return: 2885.64%
+Single Asset Max DD: -81.38%
+Single Asset Sharpe: 0.21
+
+IMPERMANENT LOSS & LVR:
+----------------------------------------
+Average IL: 4700.72%
+Maximum IL: -3.03%
+Average LVR: -4700.72%
+Maximum LVR: -23166.38%
+
+STRATEGY DETAILS:
+----------------------------------------
+name: BollingerStrategy
+initialized: True
+rebalance_count: 8686
+total_fees_earned: 0.0
+current_positions: 1
+last_update: 2025-07-29 06:00:00
+n: 20
+k: 2.0
+curve_type: uniform
+max_positions: 1
+dynamic_width: True
+bands_info: {'sma': np.float64(3807.0815000000002), 'std': np.float64(44.357642463650336), 'upper_band': np.float64(3895.796784927301), 'lower_band': np.float64(3718.3662150726996), 'band_width': np.float64(4.66054036023661)}
+
+================================================================================
+Report generated on: 2025-09-05 17:18:32
+================================================================================

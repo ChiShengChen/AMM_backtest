@@ -1,0 +1,76 @@
+{
+  "experiment_name": "ETHUSDC_bollinger_1h_20200101_20250731_0b5070f5",
+  "run_id": "0b5070f5",
+  "created_at": "2025-09-05T17:18:32.176316",
+  "backtest_config": {
+    "pair": "ETHUSDC",
+    "interval": "1h",
+    "strategy": "bollinger",
+    "strategy_params": {
+      "n": 20,
+      "k": 2.0
+    },
+    "initial_cash": 10000.0,
+    "fee_bps": 5,
+    "slippage_bps": 1,
+    "gas_cost": 0.0,
+    "liq_share": 0.002,
+    "walkforward": false,
+    "start_date": "2020-01-01 07:00:00",
+    "end_date": "2025-07-31 06:00:00"
+  },
+  "strategy_info": {
+    "name": "BollingerStrategy",
+    "parameters": {
+      "n": 20,
+      "k": 2.0
+    },
+    "initialized": true,
+    "rebalance_count": 8686,
+    "total_fees_earned": 0.0,
+    "current_positions": 1,
+    "last_update": "2025-07-29 06:00:00",
+    "n": 20,
+    "k": 2.0,
+    "curve_type": "uniform",
+    "max_positions": 1,
+    "dynamic_width": true,
+    "bands_info": {
+      "sma": 3807.0815000000002,
+      "std": 44.357642463650336,
+      "upper_band": 3895.796784927301,
+      "lower_band": 3718.3662150726996,
+      "band_width": 4.66054036023661
+    }
+  },
+  "performance_summary": {
+    "total_return_pct": 170183.31188928641,
+    "max_drawdown_pct": 0.0,
+    "sharpe_ratio": 7.296199721694761,
+    "total_fees_paid": 2.419837017725003e-22,
+    "total_gas_paid": 0.0,
+    "total_slippage": 0.0,
+    "rebalance_count": 8686,
+    "final_value": 17028331.18892864,
+    "initial_value": 10000.0
+  },
+  "baseline_performance": {
+    "hodl_50_50": {
+      "total_return_pct": 732.6021773635098,
+      "max_drawdown_pct": -54.101243295899096,
+      "sharpe_ratio": 0.20366782006309572,
+      "final_value": 83260.21773635098
+    },
+    "single_asset": {
+      "total_return_pct": 2885.6427250308266,
+      "max_drawdown_pct": -81.37759206015932,
+      "sharpe_ratio": 0.20525732197154165,
+      "final_value": 298564.27250308264
+    }
+  },
+  "file_structure": {
+    "figs_dir": "figs/",
+    "data_dir": "data/",
+    "logs_dir": "logs/"
+  }
+}

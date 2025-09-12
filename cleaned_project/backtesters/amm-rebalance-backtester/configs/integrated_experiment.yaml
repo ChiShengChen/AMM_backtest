@@ -1,0 +1,113 @@
+# Integrated AMM + Steer Strategies Experiment Configuration
+random_state: 42
+pool: BTCUSDC
+frequency: "1d"
+fee_mode: "proxy"
+initial_capital: 100000.0
+
+frictions:
+  gas_usd_per_rebalance: 3.0
+  slippage_bps: 0.5
+  mev_bps: 0.3
+  mgmt_fee_bps_per_year: 0.0
+
+wfa:
+  train_days: 180
+  valid_days: 60
+  test_days: 120
+  roll_stride_days: 30
+  n_trials: 30
+
+# 原始AMM策略
+strategies:
+  baseline_static:
+    enabled: true
+    width_pct: 500.0
+    rebalance_cooldown_hours: 168
+  
+  baseline_fixed:
+    enabled: true
+    width_pct: 50.0
+    price_deviation_bps: 50
+    rebalance_cooldown_hours: 24
+  
+  dyn_vol:
+    enabled: true
+    vol_estimator: "ewma"
+    k_width: [1.0, 3.0]
+    price_deviation_bps: [10, 80]
+    rebalance_cooldown_hours: [2, 24]
+  
+  dyn_inventory:
+    enabled: true
+    skew_threshold_pct: [3.0, 15.0]
+    fee_density_window_h: [3, 24]
+    reinvest_frequency_h: [6, 48]
+
+# Steer策略配置
+steer_strategies:
+  steer_classic:
+    enabled: true
+    width_mode: "percentage"
+    width_value: [0.05, 0.2]  # 5% to 20%
+    trigger_mode: "center_deviation"
+    trigger_value: [0.02, 0.1]  # 2% to 10%
+    curve_type: "linear"
+  
+  steer_channel_multiplier:
+    enabled: true
+    width_pct: [0.08, 0.25]  # 8% to 25%
+    trigger_pct: [0.04, 0.12]  # 4% to 12%
+  
+  steer_bollinger:
+    enabled: true
+    period: [10, 30]
+    std_multiplier: [1.5, 3.0]
+    trigger_pct: [0.05, 0.15]
+  
+  steer_keltner:
+    enabled: true
+    ema_period: [10, 30]
+    atr_multiplier: [1.5, 3.0]
+    trigger_pct: [0.05, 0.15]
+  
+  steer_donchian:
+    enabled: true
+    period: [10, 30]
+    width_multiplier: [0.8, 1.5]
+    trigger_pct: [0.05, 0.15]
+  
+  steer_stable:
+    enabled: true
+    anchor_period: [20, 60]
+    width_pct: [0.1, 0.3]
+    num_bins: [3, 8]
+    curve_type: "gaussian"
+  
+  steer_fluid:
+    enabled: true
+    ideal_ratio: [0.4, 0.6]
+    imbalance_threshold: [0.05, 0.2]
+    rebalance_threshold: [0.02, 0.1]
+  
+  steer_imperfect_classic:
+    enabled: true
+    width_mode: "percentage"
+    width_value: [0.08, 0.2]
+    trigger_mode: "center_deviation"
+    trigger_value: [0.03, 0.1]
+    imperfection_factor: [0.05, 0.2]
+
+engine:
+  min_liquidity: 1000.0
+  max_slippage: 0.03
+  rebalance_buffer: 0.01
+
+reporting:
+  save_trades: true
+  save_positions: true
+  bootstrap_samples: 1000
+  confidence_level: 0.95
+  plot_style: "seaborn"
+  dpi: 300
+  figsize: [12, 8]

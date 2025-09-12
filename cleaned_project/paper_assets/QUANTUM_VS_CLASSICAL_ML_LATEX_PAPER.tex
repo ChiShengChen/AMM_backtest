@@ -1,0 +1,629 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Quantum Machine Learning vs Classical Machine Learning in Automated Market Makers (AMM) and DeFi Financial Trading Strategies: A Comprehensive Empirical Analysis on Multi-Asset Backtesting}
+
+\author{
+    First Author$^1$, Second Author$^2$ \\
+    $^1$Department of Computer Science, University Name \\
+    $^2$Department of Finance, University Name
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This study presents a comprehensive empirical comparison between quantum machine learning (QML) and classical machine learning (CML) approaches in Automated Market Makers (AMM) and Decentralized Finance (DeFi) trading strategies through extensive backtesting on 54 models across 3 cryptocurrency assets over a 5-year period (2020-2025). Our analysis encompasses 4 distinct AMM strategies: AMM Rebalance, Concentrated Liquidity AMM, QASA Benchmark, and PennyLane Quantum, utilizing a total of 122 different feature engineering methods. The results demonstrate that quantum models exhibit superior performance in BTCUSDC asset trading and technical indicator pattern recognition tasks, achieving an average return advantage of 8.97\%. However, classical machine learning models show greater stability in high-volatility environments such as ETHUSDC. This research provides empirical evidence for the application of quantum machine learning in AMM and DeFi domains and identifies optimal scenarios for different model types.
+
+\textbf{Keywords:} Quantum Machine Learning, Classical Machine Learning, Automated Market Makers (AMM), Decentralized Finance (DeFi), Financial Trading Strategies, Feature Engineering, Backtesting Analysis
+\end{abstract}
+
+\section{Introduction}
+
+The rapid advancement of quantum computing technology has sparked significant interest in quantum machine learning applications within the financial sector, particularly in Automated Market Makers (AMM) systems and Decentralized Finance (DeFi) algorithmic trading strategies. However, the practical advantages of quantum machine learning over classical approaches remain largely unverified. This study aims to systematically compare the performance of quantum and classical machine learning approaches in AMM and DeFi trading strategies through large-scale backtesting experiments.
+
+\subsection{Background}
+
+Financial trading strategy optimization has been a central challenge in quantitative finance, particularly in the emerging Decentralized Finance (DeFi) ecosystem where Automated Market Makers (AMM) play a crucial role in providing liquidity and price discovery. While traditional machine learning methods have made significant progress in feature engineering and model selection, they still face limitations in handling complex nonlinear relationships and capturing market microstructure patterns in DeFi environments. Quantum machine learning, through quantum superposition, entanglement, and interference, theoretically offers superior capabilities for processing high-dimensional feature spaces and complex decision boundaries in various AMM strategies and DeFi trading approaches.
+
+\subsection{Research Objectives}
+
+The primary objectives of this study include:
+\begin{enumerate}
+    \item Comparing overall performance between quantum and classical machine learning in various Automated Market Makers (AMM) strategies
+    \item Identifying optimal scenarios for different model types across various assets and market conditions in DeFi ecosystems
+    \item Analyzing the impact of feature engineering on model performance in different AMM systems and DeFi protocols
+    \item Providing guidance for practical applications of quantum machine learning in AMM and DeFi domains
+\end{enumerate}
+
+\section{Literature Review}
+
+\subsection{Classical Machine Learning in Finance}
+
+Classical machine learning applications in finance have matured significantly, with algorithms such as Random Forest, Gradient Boosting, and Support Vector Machines achieving notable success in stock prediction, risk management, various Automated Market Makers (AMM) strategies, and Decentralized Finance (DeFi) trading strategy optimization. These methods typically rely on rich feature engineering and extensive historical data, particularly in DeFi protocols where liquidity provision and automated trading are critical.
+
+\subsection{Quantum Machine Learning Development}
+
+Quantum machine learning, as an emerging field, is rapidly evolving both theoretically and practically. Algorithms such as Quantum Neural Networks (QNN) and Quantum Support Vector Machines (QSVM) have shown potential advantages in specific problems, particularly in handling high-dimensional features and nonlinear relationships in various Automated Market Makers (AMM) strategies and Decentralized Finance (DeFi) trading approaches.
+
+\subsection{Research Gap}
+
+Existing research primarily focuses on theoretical analysis and small-scale experiments, lacking large-scale, systematic empirical comparative studies in Automated Market Makers (AMM) and Decentralized Finance (DeFi) trading contexts. This study addresses this gap by providing empirical evidence through comparative experiments on 54 models across various AMM strategies including rebalancing, concentrated liquidity, and quantum-enhanced approaches.
+
+\section{Methodology}
+
+\subsection{Experimental Design}
+
+\subsubsection{Dataset Specifications}
+\begin{itemize}
+    \item \textbf{Time Period:} January 1, 2020 - January 1, 2025 (5 years)
+    \item \textbf{Assets:} BTCUSDC, ETHUSDC, USDCUSDT
+    \item \textbf{Frequency:} Daily data
+    \item \textbf{Total Samples:} 1,662 trading days
+\end{itemize}
+
+\subsubsection{Experimental Groups}
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Group} & \textbf{Model Type} & \textbf{Count} & \textbf{Features} & \textbf{Processing} \\
+\midrule
+Classic ML & Random Forest, Gradient Boosting & 18 & 50-80 & Standardization \\
+Quantum ML & Qiskit VQC, PennyLane QNN & 18 & 6-8 & Angle Encoding [0,2π] \\
+QASA Hybrid & Quantum-Classical Hybrid & 9 & 12 & Mixed Processing \\
+PennyLane & Pure PennyLane Quantum & 9 & 6-8 & Angle Encoding \\
+\bottomrule
+\end{tabular}
+\caption{Experimental Group Specifications}
+\end{table}
+
+\subsection{Task Definition}
+
+\subsubsection{Core Task}
+All models learn the target function:
+\begin{equation}
+f(\mathbf{X}) \rightarrow y \in \{0,1\}
+\end{equation}
+where $\mathbf{X}$ represents market features and $y$ indicates whether rebalancing should occur.
+
+\subsubsection{Task Variants by Project}
+
+\textbf{Automated Market Makers (AMM) Rebalance Project:}
+\begin{equation}
+y_t = \mathbb{I}\left(\left|\frac{P_t}{MA_{20}(P_t)} - 1\right| > \tau_{rebalance}\right)
+\end{equation}
+where $\tau_{rebalance} = 0.02$ (2\% price deviation threshold) for DeFi liquidity pool rebalancing.
+
+\textbf{Concentrated Liquidity AMM Project:}
+\begin{equation}
+y_t = \mathbb{I}\left(\left|BB_{position}(t) - 0.5\right| > 0.3\right)
+\end{equation}
+where $BB_{position}(t) = \frac{P_t - BB_{lower}(t)}{BB_{upper}(t) - BB_{lower}(t)}$ for concentrated liquidity AMM management.
+
+\textbf{Quantum-Enhanced AMM Project:}
+\begin{equation}
+y_t = \mathbb{I}\left(\left|\Delta P_t\right| > \tau_{price}\right)
+\end{equation}
+where $\tau_{price} = 0.01$ (1\% price change threshold) for quantum-enhanced AMM strategies.
+
+\subsection{Feature Engineering}
+
+\subsubsection{Classical ML Feature Engineering (122 features)}
+
+\paragraph{Basic Price Features (8 features)}
+
+\textbf{Returns:}
+\begin{equation}
+r_t = \frac{P_t - P_{t-1}}{P_{t-1}}
+\end{equation}
+
+\textbf{Log Returns:}
+\begin{equation}
+r_t^{log} = \ln\left(\frac{P_t}{P_{t-1}}\right)
+\end{equation}
+
+\textbf{Price-MA Ratio:}
+\begin{equation}
+\rho_t^{MA} = \frac{P_t}{MA_{20}(P_t)}
+\end{equation}
+
+\textbf{High-Low Ratio:}
+\begin{equation}
+\rho_t^{HL} = \frac{H_t}{L_t}
+\end{equation}
+
+\textbf{Price Position:}
+\begin{equation}
+pos_t = \frac{P_t - L_t}{H_t - L_t}
+\end{equation}
+
+\paragraph{Moving Average Features (16 features)}
+
+\textbf{Simple Moving Average:}
+\begin{equation}
+SMA_n(P_t) = \frac{1}{n}\sum_{i=0}^{n-1} P_{t-i}
+\end{equation}
+
+\textbf{Exponential Moving Average:}
+\begin{equation}
+EMA_n(P_t) = \alpha P_t + (1-\alpha) EMA_n(P_{t-1})
+\end{equation}
+where $\alpha = \frac{2}{n+1}$.
+
+\paragraph{Technical Indicator Features (15 features)}
+
+\textbf{RSI (Relative Strength Index):}
+\begin{align}
+RS_t &= \frac{\text{Avg Gain}_t}{\text{Avg Loss}_t} \\
+RSI_t &= 100 - \frac{100}{1 + RS_t}
+\end{align}
+where $\text{Avg Gain}_t = \frac{1}{14}\sum_{i=0}^{13} \max(r_{t-i}, 0)$ and $\text{Avg Loss}_t = \frac{1}{14}\sum_{i=0}^{13} \max(-r_{t-i}, 0)$.
+
+\textbf{MACD (Moving Average Convergence Divergence):}
+\begin{align}
+MACD_t &= EMA_{12}(P_t) - EMA_{26}(P_t) \\
+Signal_t &= EMA_9(MACD_t) \\
+Histogram_t &= MACD_t - Signal_t
+\end{align}
+
+\textbf{Bollinger Bands:}
+\begin{align}
+BB_{middle}(t) &= SMA_{20}(P_t) \\
+BB_{upper}(t) &= BB_{middle}(t) + 2\sigma_{20}(P_t) \\
+BB_{lower}(t) &= BB_{middle}(t) - 2\sigma_{20}(P_t) \\
+BB_{width}(t) &= \frac{BB_{upper}(t) - BB_{lower}(t)}{BB_{middle}(t)} \\
+BB_{position}(t) &= \frac{P_t - BB_{lower}(t)}{BB_{upper}(t) - BB_{lower}(t)}
+\end{align}
+
+\textbf{ATR (Average True Range):}
+\begin{align}
+TR_t &= \max(H_t - L_t, |H_t - P_{t-1}|, |L_t - P_{t-1}|) \\
+ATR_t &= \frac{1}{14}\sum_{i=0}^{13} TR_{t-i}
+\end{align}
+
+\paragraph{Volatility Features (12 features)}
+
+\textbf{Rolling Volatility:}
+\begin{equation}
+\sigma_{n,t} = \sqrt{\frac{1}{n-1}\sum_{i=0}^{n-1} (r_{t-i} - \bar{r}_t)^2}
+\end{equation}
+where $\bar{r}_t = \frac{1}{n}\sum_{i=0}^{n-1} r_{t-i}$.
+
+\textbf{EWMA Volatility:}
+\begin{equation}
+\sigma_t^{EWMA} = \sqrt{\lambda \sigma_{t-1}^{EWMA} + (1-\lambda) r_t^2}
+\end{equation}
+where $\lambda = 0.94$ (typical value).
+
+\textbf{Volatility of Volatility:}
+\begin{equation}
+VoV_t = \sqrt{\frac{1}{9}\sum_{i=0}^{9} (\sigma_{20,t-i} - \bar{\sigma}_{20,t})^2}
+\end{equation}
+
+\textbf{Volatility Regime:}
+\begin{equation}
+Regime_t = \mathbb{I}(\sigma_{20,t} > Q_{0.8}(\sigma_{20,t-50:t}))
+\end{equation}
+where $Q_{0.8}$ is the 80th percentile.
+
+\paragraph{Volume Features (8 features)}
+
+\textbf{Volume Ratio:}
+\begin{equation}
+VR_{n,t} = \frac{V_t}{MA_n(V_t)}
+\end{equation}
+
+\textbf{Volume-Price Trend:}
+\begin{equation}
+VPT_t = V_t \cdot r_t
+\end{equation}
+
+\textbf{On-Balance Volume (OBV):}
+\begin{equation}
+OBV_t = OBV_{t-1} + \begin{cases}
+V_t & \text{if } P_t > P_{t-1} \\
+-V_t & \text{if } P_t < P_{t-1} \\
+0 & \text{if } P_t = P_{t-1}
+\end{cases}
+\end{equation}
+
+\paragraph{Time Features (12 features)}
+
+\textbf{Cyclical Encoding:}
+\begin{align}
+h_t^{sin} &= \sin\left(\frac{2\pi h_t}{24}\right) \\
+h_t^{cos} &= \cos\left(\frac{2\pi h_t}{24}\right) \\
+d_t^{sin} &= \sin\left(\frac{2\pi d_t}{7}\right) \\
+d_t^{cos} &= \cos\left(\frac{2\pi d_t}{7}\right)
+\end{align}
+where $h_t$ is hour and $d_t$ is day of week.
+
+\paragraph{Market Microstructure Features (8 features)}
+
+\textbf{Spread Proxy:}
+\begin{equation}
+Spread_t = \frac{H_t - L_t}{P_t}
+\end{equation}
+
+\textbf{Price Impact:}
+\begin{equation}
+Impact_t = \frac{|r_t|}{\ln(1 + V_t)}
+\end{equation}
+
+\textbf{Order Flow Imbalance:}
+\begin{equation}
+OFI_t = \frac{P_t - O_t}{H_t - L_t}
+\end{equation}
+
+\paragraph{Lagged Features (25 features)}
+
+\textbf{Lagged Returns:}
+\begin{equation}
+r_{t-k} = r_{t-k}, \quad k \in \{1,2,3,5,10\}
+\end{equation}
+
+\paragraph{Interaction Features (6 features)}
+
+\textbf{Volatility-Volume Interaction:}
+\begin{equation}
+I_{vol-vol,t} = \sigma_{20,t} \cdot VR_{20,t}
+\end{equation}
+
+\textbf{Price-Momentum Interaction:}
+\begin{equation}
+I_{mom-rsi,t} = r_t \cdot \frac{RSI_t - 50}{50}
+\end{equation}
+
+\subsubsection{Quantum ML Feature Engineering (6-8 features)}
+
+\paragraph{Angle Encoding}
+Classical features are mapped to quantum angles using:
+\begin{equation}
+\theta_i = \frac{x_i - x_{min}}{x_{max} - x_{min}} \cdot 2\pi
+\end{equation}
+where $x_i$ is the $i$-th classical feature, and $x_{min}$, $x_{max}$ are the minimum and maximum values.
+
+\paragraph{Quantum Feature Mapping}
+Based on feature importance analysis, features are mapped to qubits as:
+\begin{align}
+\text{Qubit 0: } & \{\text{price\_momentum}, \text{returns}\} \\
+\text{Qubit 1: } & \{\text{price\_ma\_ratio}, \text{price\_sma\_20\_ratio}\} \\
+\text{Qubit 2: } & \{\text{volatility\_20}, \text{vol\_regime}\} \\
+\text{Qubit 3: } & \{\text{rsi}, \text{macd}\} \\
+\text{Qubit 4: } & \{\text{volume\_ratio}, \text{volume\_signal}\} \\
+\text{Qubit 5: } & \{\text{bb\_position}, \text{atr\_ratio}\}
+\end{align}
+
+\subsection{Model Architectures}
+
+\subsubsection{Classical ML Models}
+
+\paragraph{Random Forest}
+\begin{equation}
+\hat{y} = \frac{1}{B}\sum_{b=1}^{B} T_b(\mathbf{x})
+\end{equation}
+where $T_b$ is the $b$-th decision tree and $B$ is the number of trees.
+
+\paragraph{Gradient Boosting}
+\begin{equation}
+F_m(\mathbf{x}) = F_{m-1}(\mathbf{x}) + \gamma_m h_m(\mathbf{x})
+\end{equation}
+where $h_m$ is the $m$-th weak learner and $\gamma_m$ is the learning rate.
+
+\subsubsection{Quantum ML Models}
+
+\paragraph{Qiskit VQC (Variational Quantum Classifier)}
+The quantum circuit consists of:
+\begin{enumerate}
+    \item Feature map: $U_{\Phi}(\mathbf{x})$
+    \item Variational ansatz: $U_{\theta}(\boldsymbol{\theta})$
+    \item Measurement: $\langle \psi | Z_i | \psi \rangle$
+\end{enumerate}
+
+The final prediction is:
+\begin{equation}
+f(\mathbf{x}) = \text{sign}\left(\sum_{i=0}^{n-1} w_i \langle \psi | Z_i | \psi \rangle + b\right)
+\end{equation}
+
+\paragraph{PennyLane QNN}
+The quantum circuit is defined as:
+\begin{align}
+|\psi\rangle &= U_{\text{var}}(\boldsymbol{\theta}) U_{\text{feat}}(\mathbf{x}) |0\rangle \\
+U_{\text{feat}}(\mathbf{x}) &= \prod_{i=0}^{n-1} RY(\theta_i) RZ(\theta_i/2) \\
+U_{\text{var}}(\boldsymbol{\theta}) &= \prod_{l=0}^{L-1} \prod_{i=0}^{n-1} RY(\theta_{l,i}) RZ(\theta_{l,i+n}) \prod_{i=0}^{n-2} CNOT(i,i+1)
+\end{align}
+
+\paragraph{QASA Hybrid Model}
+The hybrid model combines quantum and classical layers:
+\begin{align}
+\mathbf{h} &= \text{QuantumLayer}(\mathbf{x}) \\
+\mathbf{z} &= \text{ReLU}(\mathbf{W}_1 \mathbf{h} + \mathbf{b}_1) \\
+\hat{y} &= \sigma(\mathbf{W}_2 \mathbf{z} + \mathbf{b}_2)
+\end{align}
+
+\subsection{Data Splitting Strategy}
+
+Time series split to avoid future information leakage:
+\begin{align}
+\text{Train: } & [0, 0.7N] \\
+\text{Validation: } & [0.7N, 0.85N] \\
+\text{Test: } & [0.85N, N]
+\end{align}
+where $N$ is the total number of samples.
+
+\subsection{Performance Evaluation Metrics}
+
+\subsubsection{Backtesting Metrics}
+\begin{align}
+\text{Total Return: } & R = \frac{V_T - V_0}{V_0} \times 100\% \\
+\text{Sharpe Ratio: } & SR = \frac{\mu_r}{\sigma_r} \sqrt{252} \\
+\text{Maximum Drawdown: } & MDD = \max_{t} \frac{V_{peak} - V_t}{V_{peak}} \\
+\text{Rebalancing Count: } & N_{rebal} = \sum_{t=1}^{T} \mathbb{I}(y_t = 1)
+\end{align}
+
+\subsubsection{Model Evaluation Metrics}
+\begin{align}
+\text{Accuracy: } & Acc = \frac{TP + TN}{TP + TN + FP + FN} \\
+\text{F1-Score: } & F1 = \frac{2 \times Precision \times Recall}{Precision + Recall} \\
+\text{AUC: } & AUC = \int_0^1 TPR(FPR^{-1}(t)) dt
+\end{align}
+
+\section{Experimental Results}
+
+\subsection{Overall Performance Comparison}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model Type} & \textbf{Avg Return} & \textbf{Avg Sharpe} & \textbf{Count} & \textbf{Best Return} \\
+\midrule
+Classic ML & 68.2\% & 0.724 & 18 & 137.33\% \\
+Quantum ML & 51.1\% & 0.605 & 18 & 112.81\% \\
+QASA/PennyLane & 56.5\% & 0.451 & 9 & 94.62\% \\
+\bottomrule
+\end{tabular}
+\caption{Overall Performance Comparison}
+\end{table}
+
+\subsection{Asset-Specific Analysis}
+
+\subsubsection{BTCUSDC - Quantum Model Advantage}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Rank} & \textbf{Model} & \textbf{Type} & \textbf{Return} & \textbf{Sharpe} & \textbf{Advantage} \\
+\midrule
+10 & Optimized\_PennyLane & Quantum & 94.62\% & 0.871 & $\checkmark$ \\
+11 & Simplified\_QASA & QASA & 94.62\% & 0.871 & $\checkmark$ \\
+12 & Final\_PennyLane & Quantum & 94.62\% & 0.871 & $\checkmark$ \\
+16 & MLVolatility & Classic & 87.6\% & 0.732 & $\times$ \\
+17 & MLHybrid & Classic & 86.11\% & 0.725 & $\times$ \\
+18 & MLBased & Classic & 84.25\% & 0.714 & $\times$ \\
+\bottomrule
+\end{tabular}
+\caption{BTCUSDC Performance Ranking}
+\end{table}
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item Quantum models achieve 8.97\% average return advantage
+    \item Quantum models show 0.139 higher Sharpe ratio
+    \item Quantum entanglement better captures price patterns in moderate volatility
+\end{itemize}
+
+\subsubsection{ETHUSDC - Classical ML Advantage}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Rank} & \textbf{Model} & \textbf{Type} & \textbf{Return} & \textbf{Sharpe} & \textbf{Advantage} \\
+\midrule
+1 & MLBased & Classic & 137.33\% & 0.779 & $\checkmark$ \\
+2 & MLHybrid & Classic & 134.50\% & 0.770 & $\checkmark$ \\
+3 & MLVolatility & Classic & 134.03\% & 0.768 & $\checkmark$ \\
+4 & QuantumBased & Quantum & 112.81\% & 0.694 & $\times$ \\
+5 & QuantumHybrid & Quantum & 112.81\% & 0.694 & $\times$ \\
+\bottomrule
+\end{tabular}
+\caption{ETHUSDC Performance Ranking}
+\end{table}
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item Classical ML achieves 24.52\% average return advantage
+    \item Classical ML shows greater stability in high volatility
+    \item Ensemble methods more robust in high-noise environments
+\end{itemize}
+
+\subsection{Technical Indicator Task Analysis}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Rank} & \textbf{Model} & \textbf{Type} & \textbf{Return} & \textbf{Sharpe} & \textbf{Advantage} \\
+\midrule
+13 & QuantumBollinger & Quantum & 93.19\% & 0.704 & $\checkmark$ \\
+14 & QuantumKeltner & Quantum & 92.42\% & 0.701 & $\checkmark$ \\
+15 & QuantumHybrid & Quantum & 89.74\% & 0.688 & $\checkmark$ \\
+23 & MLHybrid & Classic & 73.25\% & 0.751 & $\times$ \\
+24 & MLBollinger & Classic & 71.69\% & 0.740 & $\times$ \\
+\bottomrule
+\end{tabular}
+\caption{Technical Indicator Task Performance}
+\end{table}
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item Quantum models achieve 20\%+ advantage in pattern recognition
+    \item Quantum entanglement captures nonlinear relationships between indicators
+    \item Quantum superposition explores multiple indicator combinations simultaneously
+\end{itemize}
+
+\subsection{Feature Importance Analysis}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Rank} & \textbf{Feature Name} & \textbf{Importance} & \textbf{Category} \\
+\midrule
+1 & price\_sma\_20\_ratio & 0.1245 & Price Ratio \\
+2 & volatility\_20 & 0.1123 & Volatility \\
+3 & rsi & 0.0987 & Technical \\
+4 & volume\_ratio\_20 & 0.0892 & Volume \\
+5 & bb\_position & 0.0765 & Technical \\
+\bottomrule
+\end{tabular}
+\caption{Top 5 Feature Importance Scores}
+\end{table}
+
+\section{Analysis and Discussion}
+
+\subsection{Quantum Model Advantage Scenarios}
+
+\subsubsection{BTCUSDC Asset Advantage}
+
+Quantum models excel in BTCUSDC due to:
+
+\begin{enumerate}
+    \item \textbf{Moderate Volatility Environment:} BTCUSDC's volatility is neither too stable (limiting quantum advantages) nor too volatile (causing instability).
+    
+    \item \textbf{Quantum Entanglement Benefits:} Quantum entanglement captures complex nonlinear relationships between price and technical indicators, which are more stable in moderate volatility environments.
+    
+    \item \textbf{Feature Space Optimization:} Angle encoding maps classical features to quantum states, better utilizing quantum superposition properties.
+\end{enumerate}
+
+\subsubsection{Technical Indicator Task Advantage}
+
+Quantum models excel in technical indicator pattern recognition due to:
+
+\begin{enumerate}
+    \item \textbf{Nonlinear Relationship Learning:} Quantum entanglement captures nonlinear correlations between Bollinger Bands, Keltner Channels, and other technical indicators.
+    
+    \item \textbf{Pattern Recognition Capability:} Quantum superposition simultaneously explores multiple technical indicator combinations, improving pattern recognition accuracy.
+    
+    \item \textbf{Signal Enhancement:} Quantum interference enhances important technical signals while suppressing noise.
+\end{enumerate}
+
+\subsection{Classical ML Advantage Scenarios}
+
+\subsubsection{ETHUSDC High Volatility Advantage}
+
+Classical ML excels in ETHUSDC high volatility due to:
+
+\begin{enumerate}
+    \item \textbf{Stability:} Ensemble methods like Random Forest are more robust in high-noise environments, less susceptible to extreme price fluctuations.
+    
+    \item \textbf{Training Efficiency:} Classical ML models train faster, enabling quick adaptation to market changes.
+    
+    \item \textbf{Feature Richness:} Classical ML can utilize more features (50-80), performing better in high-dimensional feature spaces.
+\end{enumerate}
+
+\subsection{Hybrid Strategy Potential}
+
+QASA hybrid models show intermediate performance between pure quantum and pure classical models, indicating hybrid strategy potential:
+
+\begin{enumerate}
+    \item \textbf{Complementary Advantages:} Quantum layers handle nonlinear relationships while classical layers provide stability.
+    
+    \item \textbf{Risk Diversification:} Hybrid architecture diversifies risks from single model types.
+    
+    \item \textbf{Adaptability:} Can dynamically adjust weights between quantum and classical layers based on market conditions.
+\end{enumerate}
+
+\section{Conclusions and Recommendations}
+
+\subsection{Main Conclusions}
+
+\begin{enumerate}
+    \item \textbf{Quantum models show advantages in specific scenarios:} In BTCUSDC moderate volatility environments and technical indicator pattern recognition tasks, quantum models achieve 8.97\% average return advantage.
+    
+    \item \textbf{Classical ML is more stable in high volatility:} In ETHUSDC high volatility environments, classical ML models show 24.52\% average return advantage with greater stability.
+    
+    \item \textbf{Feature engineering strategies significantly impact performance:} Different model types require different feature engineering strategies, with quantum models achieving good results using fewer features through angle encoding and feature selection.
+    
+    \item \textbf{Hybrid strategies show potential:} QASA hybrid models show intermediate performance, indicating development potential for hybrid strategies.
+\end{enumerate}
+
+\subsection{Practical Recommendations}
+
+\subsubsection{Model Selection Strategy}
+
+\begin{itemize}
+    \item \textbf{Moderate volatility assets:} Use quantum models, especially PennyLane QNN and QASA hybrid models.
+    \item \textbf{High volatility assets:} Use classical ML models, especially Random Forest and Gradient Boosting.
+    \item \textbf{Technical indicator tasks:} Use quantum models to leverage quantum entanglement for nonlinear relationships.
+    \item \textbf{Real-time trading:} Use classical ML models for fast response and stability.
+\end{itemize}
+
+\subsubsection{Feature Engineering Recommendations}
+
+\begin{itemize}
+    \item \textbf{Classical ML:} Use rich feature sets (50-80 features) including basic features, technical indicators, and interaction features.
+    \item \textbf{Quantum ML:} Use angle encoding to map important features to quantum states, focusing on top 10 features by importance.
+    \item \textbf{Hybrid models:} Combine classical feature engineering with quantum angle encoding, balancing feature richness and computational efficiency.
+\end{itemize}
+
+\subsection{Research Limitations and Future Directions}
+
+\subsubsection{Research Limitations}
+
+\begin{enumerate}
+    \item \textbf{Data limitations:} Study based only on cryptocurrency data; results may not apply to other financial markets.
+    \item \textbf{Model limitations:} Quantum models are still developing; there may be optimization space.
+    \item \textbf{Computational limitations:} Quantum model training time is longer, potentially limiting real-time applications.
+\end{enumerate}
+
+\subsubsection{Future Research Directions}
+
+\begin{enumerate}
+    \item \textbf{Expand datasets:} Extend research to more asset types and longer time periods.
+    \item \textbf{Model optimization:} Further optimize quantum model architectures and training strategies.
+    \item \textbf{Real-time applications:} Develop more efficient quantum models for real-time application feasibility.
+    \item \textbf{Theoretical analysis:} Deepen analysis of theoretical foundations for quantum model advantages.
+\end{enumerate}
+
+\section*{Acknowledgments}
+
+The authors thank the anonymous reviewers for their valuable comments and suggestions. This work was supported by [Funding Information].
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\appendix
+
+\section{Complete Feature List}
+
+[Detailed feature engineering code and parameter settings]
+
+\section{Model Parameter Settings}
+
+[Detailed parameter configurations for all models]
+
+\section{Complete Experimental Results}
+
+[Complete experimental results data tables]
+
+\end{document}

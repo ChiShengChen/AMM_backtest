@@ -1,0 +1,65 @@
+# AMM 動態再平衡實驗預設配置
+random_state: 42
+pool: ETHUSDC
+frequency: "1h"
+fee_mode: "proxy"   # or exact
+initial_capital: 100000.0
+
+# 摩擦成本配置
+frictions:
+  gas_usd_per_rebalance: 5.0
+  slippage_bps: 1.0
+  mev_bps: 0.5
+  mgmt_fee_bps_per_year: 0.0
+
+# Walk-Forward 分析配置
+wfa:
+  train_days: 180
+  valid_days: 60
+  test_days: 120
+  roll_stride_days: 30
+  n_trials: 40
+
+# 策略配置
+strategies:
+  baseline_static:
+    enabled: true
+    width_pct: 500.0
+    rebalance_cooldown_hours: 168
+  
+  baseline_fixed:
+    enabled: true
+    width_pct: 50.0
+    price_deviation_bps: 50
+    rebalance_cooldown_hours: 24
+  
+  dyn_vol:
+    enabled: true
+    vol_estimator: "ewma"   # or rs
+    k_width: [0.8, 2.0]     # 供 optuna 搜索的連續空間
+    price_deviation_bps: [20, 120]
+    rebalance_cooldown_hours: [6, 48]
+    vol_window_hours: 168    # 波動率估計窗口
+  
+  dyn_inventory:
+    enabled: true
+    skew_threshold_pct: [5.0, 25.0]
+    fee_density_window_h: [6, 48]
+    reinvest_frequency_h: [12, 72]
+    target_skew: 0.5         # 目標庫存比例 (token0:token1)
+
+# 回測引擎配置
+engine:
+  min_liquidity: 100.0       # 最小流動性閾值
+  max_slippage_bps: 10.0     # 最大滑點限制
+  rebalance_buffer_pct: 0.02 # 再平衡緩衝區
+
+# 報告配置
+reporting:
+  save_trades: true
+  save_positions: true
+  bootstrap_samples: 1000
+  confidence_level: 0.95
+  plot_style: "seaborn-v0_8"
+  dpi: 300
+  figsize: [12, 8]
