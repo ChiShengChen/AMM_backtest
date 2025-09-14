@@ -1,0 +1,9 @@
+Model,accuracy,type,category,architecture,training_time,complexity_score,status
+Random Forest,0.9948,Classical,Tree-based,Ensemble,1.0,3,Success
+Gradient Boosting,0.9948,Classical,Tree-based,Boosting,2.0,4,Success
+Logistic Regression,0.6373,Classical,Linear,Linear,0.5,1,Success
+VQE Classifier,0.3731,Quantum,Pure Quantum,Variational Quantum Classifier,4.0,5,Success
+QNN,0.3731,Quantum,Pure Quantum,Quantum Neural Network,5.0,5,Success
+QSVM,0.4508,Quantum,Pure Quantum,Quantum Support Vector Machine,4.0,5,Success
+QASA Hybrid,0.6425,Quantum,Hybrid Quantum,Classical + Quantum,3.0,6,Success
+QASA Sequence,0.7417,Quantum,Hybrid Quantum,LSTM + Quantum,6.0,8,Success

@@ -167,7 +167,7 @@ class QuantumMLWithAngleEncoding:
         
         logger.info("🔬 創建PennyLane量子模型...")
         
-        # 1. PennyLane QNN
+        # 1. QNN
         self.pennylane_models['pennylane_qnn'] = PennyLaneQNNWithAngleEncoding(
             name="PennyLane_QNN_AngleEncoded",
             n_qubits=self.n_qubits,
@@ -620,7 +620,7 @@ class QiskitHybridWithAngleEncoding(QuantumModelWithAngleEncoding):
 
 # PennyLane模型實現
 class PennyLaneQNNWithAngleEncoding(QuantumModelWithAngleEncoding):
-    """整合角度編碼的PennyLane QNN模型"""
+    """整合角度編碼的QNN模型"""
     
     def __init__(self, name, n_qubits, n_layers, angle_encoder):
         super().__init__(name, n_qubits, angle_encoder)

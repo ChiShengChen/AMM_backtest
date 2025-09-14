@@ -1,0 +1,74 @@
+{
+  "Random Forest": {
+    "accuracy": 0.9948,
+    "type": "Classical",
+    "category": "Tree-based",
+    "architecture": "Ensemble",
+    "training_time": 1.0,
+    "complexity_score": 3,
+    "status": "Success"
+  },
+  "Gradient Boosting": {
+    "accuracy": 0.9948,
+    "type": "Classical",
+    "category": "Tree-based",
+    "architecture": "Boosting",
+    "training_time": 2.0,
+    "complexity_score": 4,
+    "status": "Success"
+  },
+  "Logistic Regression": {
+    "accuracy": 0.6373,
+    "type": "Classical",
+    "category": "Linear",
+    "architecture": "Linear",
+    "training_time": 0.5,
+    "complexity_score": 1,
+    "status": "Success"
+  },
+  "VQE Classifier": {
+    "accuracy": 0.3731,
+    "type": "Quantum",
+    "category": "Pure Quantum",
+    "architecture": "Variational Quantum Classifier",
+    "training_time": 4.0,
+    "complexity_score": 5,
+    "status": "Success"
+  },
+  "QNN": {
+    "accuracy": 0.3731,
+    "type": "Quantum",
+    "category": "Pure Quantum",
+    "architecture": "Quantum Neural Network",
+    "training_time": 5.0,
+    "complexity_score": 5,
+    "status": "Success"
+  },
+  "QSVM": {
+    "accuracy": 0.4508,
+    "type": "Quantum",
+    "category": "Pure Quantum",
+    "architecture": "Quantum Support Vector Machine",
+    "training_time": 4.0,
+    "complexity_score": 5,
+    "status": "Success"
+  },
+  "QASA Hybrid": {
+    "accuracy": 0.6425,
+    "type": "Quantum",
+    "category": "Hybrid Quantum",
+    "architecture": "Classical + Quantum",
+    "training_time": 3.0,
+    "complexity_score": 6,
+    "status": "Success"
+  },
+  "QASA Sequence": {
+    "accuracy": 0.7417,
+    "type": "Quantum",
+    "category": "Hybrid Quantum",
+    "architecture": "LSTM + Quantum",
+    "training_time": 6.0,
+    "complexity_score": 8,
+    "status": "Success"
+  }
+}

@@ -132,7 +132,7 @@ class PennyLaneQNNRebalancePredictor(PennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model."""
+        """Initialize the QNN model."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -146,7 +146,7 @@ class PennyLaneQNNRebalancePredictor(PennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized PennyLane QNN with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized QNN with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for rebalance prediction."""
@@ -186,8 +186,8 @@ class PennyLaneQNNRebalancePredictor(PennyLaneQuantumModelBase):
         return 1 - accuracy  # Minimize (1 - accuracy)
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model."""
-        logger.info(f"Training PennyLane QNN on {len(X)} samples with {X.shape[1]} features")
+        """Train the QNN model."""
+        logger.info(f"Training QNN on {len(X)} samples with {X.shape[1]} features")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -236,7 +236,7 @@ class PennyLaneQNNRebalancePredictor(PennyLaneQuantumModelBase):
         self.weights = best_weights
         self.is_trained = True
         
-        logger.info(f"PennyLane QNN training completed. Best accuracy: {best_accuracy:.4f}")
+        logger.info(f"QNN training completed. Best accuracy: {best_accuracy:.4f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make predictions."""
@@ -296,7 +296,7 @@ class PennyLaneQNNVolatilityPredictor(PennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model for volatility prediction."""
+        """Initialize the QNN model for volatility prediction."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -310,7 +310,7 @@ class PennyLaneQNNVolatilityPredictor(PennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized PennyLane QNN Volatility Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized QNN Volatility Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for volatility prediction."""
@@ -353,8 +353,8 @@ class PennyLaneQNNVolatilityPredictor(PennyLaneQuantumModelBase):
         return mse
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model for volatility prediction."""
-        logger.info(f"Training PennyLane QNN Volatility Predictor on {len(X)} samples")
+        """Train the QNN model for volatility prediction."""
+        logger.info(f"Training QNN Volatility Predictor on {len(X)} samples")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -403,7 +403,7 @@ class PennyLaneQNNVolatilityPredictor(PennyLaneQuantumModelBase):
         self.y_max = y_max
         self.y_range = y_range
         
-        logger.info(f"PennyLane QNN Volatility training completed. Best MSE: {best_mse:.6f}")
+        logger.info(f"QNN Volatility training completed. Best MSE: {best_mse:.6f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make volatility predictions."""
@@ -462,7 +462,7 @@ class PennyLaneQNNHybridPredictor(PennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN hybrid model."""
+        """Initialize the QNN hybrid model."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -476,7 +476,7 @@ class PennyLaneQNNHybridPredictor(PennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized PennyLane QNN Hybrid Predictor ({self.task_type}) with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized QNN Hybrid Predictor ({self.task_type}) with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for hybrid prediction."""
@@ -532,8 +532,8 @@ class PennyLaneQNNHybridPredictor(PennyLaneQuantumModelBase):
             return mse
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN hybrid model."""
-        logger.info(f"Training PennyLane QNN Hybrid Predictor ({self.task_type}) on {len(X)} samples")
+        """Train the QNN hybrid model."""
+        logger.info(f"Training QNN Hybrid Predictor ({self.task_type}) on {len(X)} samples")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -583,7 +583,7 @@ class PennyLaneQNNHybridPredictor(PennyLaneQuantumModelBase):
         self.weights = best_weights
         self.is_trained = True
         
-        logger.info(f"PennyLane QNN Hybrid training completed. Best cost: {best_metric:.6f}")
+        logger.info(f"QNN Hybrid training completed. Best cost: {best_metric:.6f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make predictions."""

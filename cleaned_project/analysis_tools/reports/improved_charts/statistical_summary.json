@@ -1,0 +1,43 @@
+{
+  "overall_stats": {
+    "total_models": 8,
+    "classical_models": 3,
+    "quantum_models": 5,
+    "best_accuracy": 0.9948,
+    "worst_accuracy": 0.3731,
+    "avg_accuracy": 0.6510125,
+    "best_return": 0.1392371667667408,
+    "worst_return": 0.03175392597329416,
+    "avg_return": 0.086359607700253
+  },
+  "classical_stats": {
+    "models": [
+      "Random Forest",
+      "Gradient Boosting",
+      "Logistic Regression"
+    ],
+    "avg_accuracy": 0.8756333333333334,
+    "avg_return": 0.0969177290903268,
+    "avg_sharpe": 1.4599674079202334
+  },
+  "quantum_stats": {
+    "models": [
+      "VQE Classifier",
+      "QNN",
+      "QSVM",
+      "QASA Hybrid",
+      "QASA Sequence"
+    ],
+    "avg_accuracy": 0.51624,
+    "avg_return": 0.08002473486620872,
+    "avg_sharpe": 1.1443233366896002
+  },
+  "export_timestamp": "2025-09-12T22:28:40.414115",
+  "data_description": {
+    "training_results": "Model training accuracy, complexity, and architecture information",
+    "backtest_results": "Financial performance metrics from backtesting",
+    "performance_metrics": "Combined training and backtest performance indicators",
+    "model_comparison": "Pairwise comparison between all models",
+    "time_series_data": "Daily equity curves and returns for each model"
+  }
+}

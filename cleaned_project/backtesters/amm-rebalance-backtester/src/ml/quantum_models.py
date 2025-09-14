@@ -281,7 +281,7 @@ class PennyLaneQNNPredictor(QuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model."""
+        """Initialize the QNN model."""
         # Create quantum device
         self.device = qml.device('default.qubit', wires=self.n_qubits)
         
@@ -291,7 +291,7 @@ class PennyLaneQNNPredictor(QuantumModelBase):
         # Create optimizer
         self.optimizer = qml.AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized PennyLane QNN with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized QNN with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _quantum_circuit(self, features, weights):
         """Define the quantum circuit."""
@@ -313,11 +313,11 @@ class PennyLaneQNNPredictor(QuantumModelBase):
         return qml.expval(qml.PauliZ(0))
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model."""
+        """Train the QNN model."""
         if not QUANTUM_AVAILABLE:
             raise ImportError("PennyLane not available")
         
-        logger.info(f"Training PennyLane QNN on {len(X)} samples with {X.shape[1]} features")
+        logger.info(f"Training QNN on {len(X)} samples with {X.shape[1]} features")
         
         # Create QNode
         self.circuit = qml.QNode(self._quantum_circuit, self.device)
@@ -340,7 +340,7 @@ class PennyLaneQNNPredictor(QuantumModelBase):
                 logger.info(f"Epoch {epoch}, Cost: {cost:.4f}")
         
         self.is_trained = True
-        logger.info("PennyLane QNN training completed")
+        logger.info("QNN training completed")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make predictions."""

@@ -56,6 +56,10 @@ def main():
         {
             "script": "analysis_tools/analyze_classical_features_for_quantum.py",
             "description": "經典特徵分析"
+        },
+        {
+            "script": "analysis_tools/generate_all_performance_charts.py",
+            "description": "生成模型性能比較圖表"
         }
     ]
     

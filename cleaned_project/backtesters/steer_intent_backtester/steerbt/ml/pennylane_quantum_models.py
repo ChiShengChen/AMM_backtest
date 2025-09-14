@@ -131,7 +131,7 @@ class SteerPennyLaneQNNIntentPredictor(SteerPennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model for intent prediction."""
+        """Initialize the QNN model for intent prediction."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -145,7 +145,7 @@ class SteerPennyLaneQNNIntentPredictor(SteerPennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized Steer PennyLane QNN Intent Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized Steer QNN Intent Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for intent prediction."""
@@ -186,8 +186,8 @@ class SteerPennyLaneQNNIntentPredictor(SteerPennyLaneQuantumModelBase):
         return 1 - accuracy  # Minimize (1 - accuracy)
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model for intent prediction."""
-        logger.info(f"Training Steer PennyLane QNN Intent Predictor on {len(X)} samples with {X.shape[1]} features")
+        """Train the QNN model for intent prediction."""
+        logger.info(f"Training Steer QNN Intent Predictor on {len(X)} samples with {X.shape[1]} features")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -236,7 +236,7 @@ class SteerPennyLaneQNNIntentPredictor(SteerPennyLaneQuantumModelBase):
         self.weights = best_weights
         self.is_trained = True
         
-        logger.info(f"Steer PennyLane QNN Intent training completed. Best accuracy: {best_accuracy:.4f}")
+        logger.info(f"Steer QNN Intent training completed. Best accuracy: {best_accuracy:.4f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make intent predictions."""
@@ -296,7 +296,7 @@ class SteerPennyLaneQNNPricePredictor(SteerPennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model for price prediction."""
+        """Initialize the QNN model for price prediction."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -310,7 +310,7 @@ class SteerPennyLaneQNNPricePredictor(SteerPennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized Steer PennyLane QNN Price Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized Steer QNN Price Predictor with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for price prediction."""
@@ -355,8 +355,8 @@ class SteerPennyLaneQNNPricePredictor(SteerPennyLaneQuantumModelBase):
         return mse
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model for price prediction."""
-        logger.info(f"Training Steer PennyLane QNN Price Predictor on {len(X)} samples")
+        """Train the QNN model for price prediction."""
+        logger.info(f"Training Steer QNN Price Predictor on {len(X)} samples")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -405,7 +405,7 @@ class SteerPennyLaneQNNPricePredictor(SteerPennyLaneQuantumModelBase):
         self.y_max = y_max
         self.y_range = y_range
         
-        logger.info(f"Steer PennyLane QNN Price training completed. Best MSE: {best_mse:.6f}")
+        logger.info(f"Steer QNN Price training completed. Best MSE: {best_mse:.6f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make price predictions."""
@@ -464,7 +464,7 @@ class SteerPennyLaneQNNHybridPredictor(SteerPennyLaneQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN hybrid model."""
+        """Initialize the QNN hybrid model."""
         # Initialize weights
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, self.n_qubits))
         
@@ -478,7 +478,7 @@ class SteerPennyLaneQNNHybridPredictor(SteerPennyLaneQuantumModelBase):
         # Initialize optimizer
         self.optimizer = AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized Steer PennyLane QNN Hybrid Predictor ({self.task_type}) with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized Steer QNN Hybrid Predictor ({self.task_type}) with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _create_circuit(self, inputs, weights):
         """Create the quantum circuit for hybrid prediction."""
@@ -534,8 +534,8 @@ class SteerPennyLaneQNNHybridPredictor(SteerPennyLaneQuantumModelBase):
             return mse
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN hybrid model."""
-        logger.info(f"Training Steer PennyLane QNN Hybrid Predictor ({self.task_type}) on {len(X)} samples")
+        """Train the QNN hybrid model."""
+        logger.info(f"Training Steer QNN Hybrid Predictor ({self.task_type}) on {len(X)} samples")
         
         # Normalize features
         X_normalized = self._normalize_features(X)
@@ -585,7 +585,7 @@ class SteerPennyLaneQNNHybridPredictor(SteerPennyLaneQuantumModelBase):
         self.weights = best_weights
         self.is_trained = True
         
-        logger.info(f"Steer PennyLane QNN Hybrid training completed. Best cost: {best_metric:.6f}")
+        logger.info(f"Steer QNN Hybrid training completed. Best cost: {best_metric:.6f}")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make predictions."""

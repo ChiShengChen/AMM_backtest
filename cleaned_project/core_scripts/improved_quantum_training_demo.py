@@ -116,7 +116,7 @@ class QuantumFeatureEngineer:
         return position.fillna(0.5)  # 填充中間值
 
 class QiskitVQCTrainer:
-    """Qiskit VQC訓練器"""
+    """VQE Classifier訓練器"""
     
     def __init__(self, n_qubits: int = 4, n_layers: int = 2, feature_dim: int = 8):
         if not QUANTUM_AVAILABLE:
@@ -130,7 +130,7 @@ class QiskitVQCTrainer:
         
     def train(self, X: np.ndarray, y: np.ndarray, max_iter: int = 100) -> dict:
         """訓練VQC模型"""
-        logger.info(f"Training Qiskit VQC with {len(X)} samples, {X.shape[1]} features")
+        logger.info(f"Training VQE Classifier with {len(X)} samples, {X.shape[1]} features")
         
         # 創建特徵映射
         feature_map = ZZFeatureMap(feature_dimension=self.feature_dim, reps=1)
@@ -180,7 +180,7 @@ class QiskitVQCTrainer:
         return self.vqc.predict_proba(X)
 
 class PennyLaneQNNTrainer:
-    """PennyLane QNN訓練器"""
+    """QNN訓練器"""
     
     def __init__(self, n_qubits: int = 4, n_layers: int = 2, feature_dim: int = 8):
         if not QUANTUM_AVAILABLE:
@@ -215,8 +215,8 @@ class PennyLaneQNNTrainer:
         return qml.expval(qml.PauliZ(0))
     
     def train(self, X: np.ndarray, y: np.ndarray, n_epochs: int = 50, learning_rate: float = 0.1) -> dict:
-        """訓練PennyLane QNN模型"""
-        logger.info(f"Training PennyLane QNN with {len(X)} samples, {X.shape[1]} features")
+        """訓練QNN模型"""
+        logger.info(f"Training QNN with {len(X)} samples, {X.shape[1]} features")
         
         # 初始化權重
         self.weights = np.random.uniform(0, 2*np.pi, (self.n_layers, 2*self.n_qubits))
@@ -249,7 +249,7 @@ class PennyLaneQNNTrainer:
         y_pred = self.predict(X)
         accuracy = accuracy_score(y, y_pred)
         
-        logger.info(f"PennyLane QNN training completed in {training_time:.2f}s, accuracy: {accuracy:.4f}")
+        logger.info(f"QNN training completed in {training_time:.2f}s, accuracy: {accuracy:.4f}")
         
         return {
             'model': self,
@@ -285,9 +285,9 @@ class QuantumModelComparator:
         results = {}
         
         if QUANTUM_AVAILABLE:
-            # 1. Qiskit VQC
+            # 1. VQE Classifier
             try:
-                logger.info("Training Qiskit VQC...")
+                logger.info("Training VQE Classifier...")
                 vqc_trainer = QiskitVQCTrainer(n_qubits=4, n_layers=2, feature_dim=X_train.shape[1])
                 vqc_result = vqc_trainer.train(X_train, y_train, max_iter=50)
                 
@@ -303,12 +303,12 @@ class QuantumModelComparator:
                 }
                 
             except Exception as e:
-                logger.error(f"Qiskit VQC training failed: {e}")
+                logger.error(f"VQE Classifier training failed: {e}")
                 results['Qiskit_VQC'] = {'error': str(e)}
             
-            # 2. PennyLane QNN
+            # 2. QNN
             try:
-                logger.info("Training PennyLane QNN...")
+                logger.info("Training QNN...")
                 pennylane_trainer = PennyLaneQNNTrainer(n_qubits=4, n_layers=2, feature_dim=X_train.shape[1])
                 pennylane_result = pennylane_trainer.train(X_train, y_train, n_epochs=30)
                 
@@ -325,7 +325,7 @@ class QuantumModelComparator:
                 }
                 
             except Exception as e:
-                logger.error(f"PennyLane QNN training failed: {e}")
+                logger.error(f"QNN training failed: {e}")
                 results['PennyLane_QNN'] = {'error': str(e)}
         
         # 3. 經典模型對比
@@ -441,7 +441,7 @@ class QuantumModelComparator:
             plt.plot(history)
             plt.xlabel('Epoch')
             plt.ylabel('Cost')
-            plt.title('PennyLane QNN Training History')
+            plt.title('QNN Training History')
             plt.grid(True, alpha=0.3)
         
         # 6. 模型穩定性（使用交叉驗證結果）

@@ -280,7 +280,7 @@ class SteerPennyLaneQNNPredictor(SteerQuantumModelBase):
         self._initialize_model()
     
     def _initialize_model(self):
-        """Initialize the PennyLane QNN model for Steer Intent."""
+        """Initialize the QNN model for Steer Intent."""
         # Create quantum device
         self.device = qml.device('default.qubit', wires=self.n_qubits)
         
@@ -290,7 +290,7 @@ class SteerPennyLaneQNNPredictor(SteerQuantumModelBase):
         # Create optimizer
         self.optimizer = qml.AdamOptimizer(stepsize=0.01)
         
-        logger.info(f"Initialized Steer PennyLane QNN with {self.n_qubits} qubits, {self.n_layers} layers")
+        logger.info(f"Initialized Steer QNN with {self.n_qubits} qubits, {self.n_layers} layers")
     
     def _quantum_circuit(self, features, weights):
         """Define the quantum circuit optimized for Steer Intent."""
@@ -316,11 +316,11 @@ class SteerPennyLaneQNNPredictor(SteerQuantumModelBase):
         return qml.expval(qml.PauliZ(0))
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """Train the PennyLane QNN model for Steer Intent."""
+        """Train the QNN model for Steer Intent."""
         if not QUANTUM_AVAILABLE:
             raise ImportError("PennyLane not available")
         
-        logger.info(f"Training Steer PennyLane QNN on {len(X)} samples with {X.shape[1]} features")
+        logger.info(f"Training Steer QNN on {len(X)} samples with {X.shape[1]} features")
         
         # Create QNode
         self.circuit = qml.QNode(self._quantum_circuit, self.device)
@@ -357,7 +357,7 @@ class SteerPennyLaneQNNPredictor(SteerQuantumModelBase):
                 logger.info(f"Epoch {epoch}, Cost: {cost:.4f}")
         
         self.is_trained = True
-        logger.info("Steer PennyLane QNN training completed")
+        logger.info("Steer QNN training completed")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """Make predictions."""

@@ -1,61 +1,84 @@
 # Quantum vs Classical ML in AMM Trading Strategies
 
-## 🚀 快速開始
+## ⭐ Main Entry Point
 
-### 1. 核心訓練腳本
+**`python analysis_tools/unified_label_training.py`** is the core file of this project!
 
-#### 經典機器學習訓練
+This script will:
+- 🚀 Train 10 different machine learning models (classical + quantum + hybrid)
+- 📊 Automatically generate all analysis charts (accuracy, confusion matrices, feature importance, etc.)
+- 🔍 Perform uncertainty analysis and risk assessment
+- 💾 Save complete training results and reports
+
+**Quick Start**:
 ```bash
-python core_scripts/improved_training_demo.py
+cd analysis_tools
+python unified_label_training.py
 ```
 
-#### 量子機器學習訓練
+---
+
+## 🚀 Quick Start
+
+### 1. Unified Training System ⭐ **Main Recommendation**
+
+#### Complete Model Training and Comparison
 ```bash
-python core_scripts/improved_quantum_training_demo.py
+cd analysis_tools
+python unified_label_training.py
 ```
 
-#### 綜合訓練測試工具包
+**🎯 This is the core file of the project!** One-click completion of all features:
+- Train 10 models (3 classical + 7 quantum/hybrid)
+- Automatically generate all analysis charts
+- Include uncertainty analysis and 3x3 confusion matrices
+- Support LSTM_QNN and true QASA Sequence models
+- Fixed all known issues (VQE Classifier, confusion matrices, feature importance, etc.)
+
+#### Individual Model Training
 ```bash
-python core_scripts/training_testing_toolkit.py
+# LSTM + Quantum Neural Network
+python analysis_tools/lstm_qnn_model.py
+
+# True QASA Algorithm
+python analysis_tools/qasa_sequence_model.py
+
+# Quantum RWKV Model
+python analysis_tools/qrwkv_model.py
 ```
 
-#### QASA基準測試
+### 2. Analysis Tools
+
+#### Uncertainty Charts Generation
 ```bash
-python core_scripts/simplified_qasa_benchmark.py
+python analysis_tools/create_uncertainty_charts.py
 ```
 
-### 2. 分析工具
-
-#### 統一模型比較
+#### Experiment Results Export
 ```bash
-python analysis_tools/create_unified_model_comparison.py
+python analysis_tools/export_experiment_results.py
 ```
 
-#### 經典特徵分析
+#### Multiple Runs Analysis
 ```bash
-python analysis_tools/analyze_classical_features_for_quantum.py
+python analysis_tools/multiple_runs_analysis.py
 ```
 
-#### 量子角度編碼
-```bash
-python analysis_tools/quantum_ml_with_angle_encoding.py
-```
+### 3. Backtesting Systems
 
-### 3. 回測系統
-
-#### AMM回測
+#### AMM Backtesting
 ```bash
 cd backtesters/amm-rebalance-backtester
 python run.py quick --pool ETHUSDC --freq 1h --fee-mode proxy
 ```
 
-#### 集中流動性回測
+#### Concentrated Liquidity Backtesting
 ```bash
 cd backtesters/steer_intent_backtester
 python cli.py backtest --pair ETHUSDC --interval 1h
 ```
 
-### 4. 論文編譯
+### 4. Paper Compilation
 
 ```bash
 cd paper_assets
@@ -63,86 +86,145 @@ chmod +x compile_latex_paper.sh
 ./compile_latex_paper.sh
 ```
 
-## 📁 專案結構
+## 📁 Project Structure
 
 ```
 cleaned_project/
-├── core_scripts/           # 核心執行腳本
-│   ├── training_testing_toolkit.py      # 綜合訓練工具
-│   ├── improved_training_demo.py        # 經典ML訓練
-│   ├── improved_quantum_training_demo.py # 量子ML訓練
-│   ├── simplified_qasa_benchmark.py     # QASA基準測試
-│   └── quantum_angle_encoding.py        # 角度編碼工具
-├── analysis_tools/         # 分析工具
-│   ├── create_unified_model_comparison.py # 統一模型比較
-│   ├── analyze_classical_features_for_quantum.py # 特徵分析
-│   └── quantum_ml_with_angle_encoding.py # 量子ML分析
-├── backtesters/            # 回測系統
-│   ├── amm-rebalance-backtester/        # AMM回測
-│   └── steer_intent_backtester/         # 集中流動性回測
-├── paper_assets/           # 論文資源
-│   ├── paper_figures/                    # 論文圖表
-│   ├── QUANTUM_VS_CLASSICAL_ML_LATEX_PAPER.tex # LaTeX論文
-│   ├── references.bib                    # 參考文獻
-│   └── compile_latex_paper.sh            # 編譯腳本
-└── README.md               # 本文件
+├── analysis_tools/         # Analysis Tools (Main)
+│   ├── unified_label_training.py          # ⭐ Main Entry Point - Unified Training System
+│   ├── create_uncertainty_charts.py       # Uncertainty Charts
+│   ├── export_experiment_results.py       # Results Export
+│   ├── multiple_runs_analysis.py          # Multiple Runs Analysis
+│   ├── lstm_qnn_model.py                  # LSTM+Quantum Model
+│   ├── qasa_sequence_model.py             # True QASA Algorithm
+│   ├── qrwkv_model.py                     # Quantum RWKV Model
+│   └── reports/                           # Analysis Results
+│       ├── unified_label_training/        # Unified Training Results
+│       ├── uncertainty_charts/            # Uncertainty Charts
+│       └── exported_results/              # Exported Results
+├── core_scripts/           # Core Execution Scripts
+│   ├── training_testing_toolkit.py        # Comprehensive Training Toolkit
+│   ├── improved_training_demo.py          # Classical ML Training
+│   ├── improved_quantum_training_demo.py  # Quantum ML Training
+│   └── quantum_angle_encoding.py          # Angle Encoding Tools
+├── backtesters/            # Backtesting Systems
+│   ├── amm-rebalance-backtester/          # AMM Backtesting
+│   └── steer_intent_backtester/           # Concentrated Liquidity Backtesting
+├── paper_assets/           # Paper Resources
+│   ├── paper_figures/                      # Paper Figures
+│   ├── QUANTUM_VS_CLASSICAL_ML_LATEX_PAPER.tex # LaTeX Paper
+│   ├── references.bib                      # References
+│   └── compile_latex_paper.sh              # Compilation Script
+└── README.md               # This File
 ```
 
-## 🎯 核心功能
+## 🎯 Core Features
 
-### 模型訓練
-- **經典ML**: Random Forest, Gradient Boosting, Logistic Regression
-- **量子ML**: Qiskit VQC, PennyLane QNN
-- **混合模型**: QASA (Quantum-Classical Hybrid)
+### Model Training (10 Models)
+- **Classical ML**: Random Forest, Gradient Boosting, Logistic Regression
+- **Quantum ML**: VQE Classifier, QNN, QSVM
+- **Hybrid Models**: QASA Hybrid, QuantumRWKV, LSTM_QNN, QASA Sequence
 
-### 特徵工程
-- **經典特徵**: 122個技術指標和市場特徵
-- **量子特徵**: 角度編碼映射到[0, 2π]範圍
-- **特徵選擇**: 基於重要性的特徵排序
+### Feature Engineering
+- **Core Feature**: `price_ma_ratio` (Price/20-day Moving Average Ratio)
+- **Technical Indicators**: RSI, MACD, Bollinger Bands, ATR, etc.
+- **Feature Importance**: Automatic analysis and visualization
 
-### 回測系統
-- **AMM策略**: 自動化做市商再平衡
-- **集中流動性**: 布林帶位置管理
-- **多資產支持**: BTCUSDC, ETHUSDC, USDCUSDT
+### Chart Generation
+- **Accuracy Comparison**: Bar charts + Pie charts
+- **Confusion Matrices**: 3x3 layout, automatically hide empty plots
+- **Feature Importance**: Dynamic adaptation to feature count
+- **Uncertainty Analysis**: Error bars, shadow regions, Sharpe ratio reference lines
+- **Equity Curves**: Time series charts with uncertainty
 
-### 分析工具
-- **性能比較**: 54個模型的綜合比較
-- **統計分析**: 顯著性檢驗和置信區間
-- **可視化**: 高品質圖表生成
+### Backtesting Systems
+- **AMM Strategy**: Automated Market Maker rebalancing
+- **Concentrated Liquidity**: Bollinger Band position management
+- **Multi-Asset Support**: BTCUSDC, ETHUSDC, USDCUSDT
 
-## 📊 結果查看
+## 📊 Results Viewing
 
-### 訓練結果
-- `reports/training_evaluation/` - 經典ML結果
-- `reports/quantum_training_evaluation/` - 量子ML結果
-- `reports/unified_model_comparison/` - 統一比較結果
+### Unified Training Results
+- `analysis_tools/reports/unified_label_training/` - Main results directory
+  - `accuracy_comparison.png` - Accuracy comparison chart
+  - `confusion_matrices.png` - 3x3 confusion matrices
+  - `feature_importance.png` - Feature importance analysis
+  - `performance_summary.png` - Performance summary
+  - `uncertainty_charts/` - Uncertainty analysis charts
 
-### 回測結果
-- `backtesters/amm-rebalance-backtester/reports/` - AMM回測結果
-- `backtesters/steer_intent_backtester/reports/` - 集中流動性回測結果
+### Exported Results
+- `analysis_tools/reports/exported_results/` - All experiment data
+  - CSV format raw results
+  - JSON format statistical data
+  - Excel format summary reports
+  - Markdown format README
 
-### 論文圖表
-- `paper_assets/paper_figures/` - 18張高品質論文圖表
+### Paper Figures
+- `paper_assets/paper_figures/` - 18 high-quality paper figures
 
-## 🔧 依賴安裝
+## 🔧 Dependencies Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-主要依賴：
-- pandas, numpy, scikit-learn
-- qiskit, pennylane
-- matplotlib, seaborn
-- optuna, click
+Main dependencies:
+- **Base**: pandas, numpy, scikit-learn, matplotlib, seaborn
+- **Quantum**: qiskit, qiskit-algorithms, pennylane
+- **Deep Learning**: torch, torchvision
+- **Optimization**: optuna
+- **Others**: click, openpyxl
 
-## 📈 主要發現
+## 🎯 Key Findings
 
-1. **量子模型優勢**: 在BTCUSDC和技術指標任務中表現優異
-2. **經典模型穩定性**: 在高波動環境中更穩定
-3. **混合策略**: QASA在特定場景下表現最佳
-4. **特徵工程**: 角度編碼有效提升量子模型性能
+### 1. Feature Importance Analysis
+- **`price_ma_ratio`** is the most important feature
+- Gradient Boosting uses only this one feature (normal phenomenon)
+- Other features are highly correlated with `price_ma_ratio`
+
+### 2. Model Performance
+- **Classical Models**: Random Forest, Gradient Boosting accuracy > 99%
+- **Quantum Models**: VQE Classifier accuracy ~54%
+- **Hybrid Models**: QuantumRWKV accuracy ~83%
+
+### 3. Data Splitting Strategy
+- Uses 252 trading days data (2024)
+- 70/15/15 train/validation/test split
+- Based on AMM Baseline label standards
+
+## 🚨 Known Issues and Fixes
+
+### Fixed Issues
+1. ✅ **VQE Classifier 0% accuracy** - Fixed Qiskit API compatibility issues
+2. ✅ **Confusion matrix empty plots** - Changed to 3x3 layout, automatically hide empty subplots
+3. ✅ **Feature importance dimension mismatch** - Dynamic adaptation to feature count
+4. ✅ **Uncertainty charts not generated** - Integrated into unified training system
+
+### Model Descriptions
+- **LSTM_QNN**: Originally "QASA Sequence", actually LSTM+Quantum Neural Network
+- **QASA Sequence**: New implementation of true QASA algorithm
+- **VQE Classifier**: Uses Variational Quantum Classifier, API issues fixed
+
+## 📈 Usage Recommendations
+
+1. **⭐ First Time Use**: Run `python analysis_tools/unified_label_training.py` for complete results
+2. **Model Comparison**: Check `accuracy_comparison.png` and `confusion_matrices.png`
+3. **Feature Analysis**: Check `feature_importance.png` to understand feature importance
+4. **Uncertainty Analysis**: Check charts in `uncertainty_charts/` directory
+5. **Data Export**: Run `export_experiment_results.py` to export all data
+
+## 🔄 Update Log
+
+- **2025-01-13**: Integrated unified training system, fixed all chart issues
+- **2025-01-13**: Added LSTM_QNN and true QASA Sequence models
+- **2025-01-13**: Fixed VQE Classifier API compatibility issues
+- **2025-01-13**: Enhanced uncertainty analysis and 3x3 confusion matrices
+
+## 🌐 Language Versions
+
+- **English**: Current version (this file)
+- **中文版**: [README_中文.md](README_中文.md) - 完整中文版文檔
 
 ---
 
-*簡潔版專案結構 - 2025-09-12*
+*Complete Project Documentation - 2025-01-13*

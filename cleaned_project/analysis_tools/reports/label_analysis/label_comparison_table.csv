@@ -1,0 +1,6 @@
+,label_type,label_definition,label_formula,rebalance_criteria,threshold,prediction_target,model_output,decision_logic,model_type
+QASA Benchmark,價格變化預測,預測下一個時間步的價格變化百分比,y = (next_price - current_price) / current_price,預測的價格變化絕對值 > 1%,0.01 (1%),連續值 (價格變化率),回歸預測,abs(prediction) > threshold,量子-經典混合神經網絡
+AMM Quantum Strategy,再平衡分類,基於價格偏差的分類標籤,y = 1 if price_deviation > threshold else 0,量子模型預測 > 閾值,0.3 (30%),二分類 (是否再平衡),分類預測,prediction > rebalance_threshold,量子神經網絡
+PennyLane Quantum,價格變化分類,基於價格變化幅度的分類標籤,y = 1 if abs(price_change) > threshold else 0,量子預測 = 1 且 概率 > 0.6,0.1 (10%),二分類 (是否再平衡),分類預測 + 概率,prediction == 1 and probability > 0.6,PennyLane量子分類器
+Steer Intent Classic,位置管理,基於布林帶位置的分類標籤,y = 1 if |BB_position - 0.5| > 0.3 else 0,多個觸發條件 (間隙、漂移、時間),動態 (基於波動率),二分類 (是否調整位置),觸發器組合,多個觸發器OR邏輯,規則基礎策略
+AMM Baseline,價格偏差,基於價格與移動平均線的偏差,y = 1 if |price/MA - 1| > threshold else 0,價格偏差 > 2%,0.02 (2%),二分類 (是否再平衡),簡單規則,price_deviation > threshold,規則基礎策略

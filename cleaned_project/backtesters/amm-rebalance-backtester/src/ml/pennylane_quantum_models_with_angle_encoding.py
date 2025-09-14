@@ -215,7 +215,7 @@ class PennyLaneQuantumModelWithAngleEncodingBase(ABC):
         pass
 
 class PennyLaneQNNWithAngleEncoding(PennyLaneQuantumModelWithAngleEncodingBase):
-    """整合角度編碼的PennyLane QNN模型"""
+    """整合角度編碼的QNN模型"""
     
     def __init__(self, name: str = "PennyLane_QNN_AngleEncoded", n_qubits: int = 6, 
                  n_layers: int = 3, encoding_method: str = 'robust', 
@@ -228,11 +228,11 @@ class PennyLaneQNNWithAngleEncoding(PennyLaneQuantumModelWithAngleEncodingBase):
         # 創建量子電路
         self.circuit = self.create_quantum_circuit()
         
-        logger.info(f"初始化PennyLane QNN: {self.n_qubits}量子比特, {self.n_layers}層")
+        logger.info(f"初始化QNN: {self.n_qubits}量子比特, {self.n_layers}層")
     
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
-        """訓練PennyLane QNN模型"""
-        logger.info(f"訓練PennyLane QNN: {len(X)}樣本, {X.shape[1]}特徵")
+        """訓練QNN模型"""
+        logger.info(f"訓練QNN: {len(X)}樣本, {X.shape[1]}特徵")
         
         # 使用角度編碼準備特徵
         X_encoded = self.prepare_features(X, fit_encoder=True)
@@ -274,7 +274,7 @@ class PennyLaneQNNWithAngleEncoding(PennyLaneQuantumModelWithAngleEncodingBase):
                 logger.info(f"Epoch {epoch}, Loss: {loss.item():.4f}")
         
         self.is_trained = True
-        logger.info("PennyLane QNN訓練完成")
+        logger.info("QNN訓練完成")
     
     def predict(self, X: np.ndarray) -> np.ndarray:
         """預測"""
@@ -553,7 +553,7 @@ def create_pennylane_models_with_angle_encoding(feature_names: List[str],
         return models
     
     try:
-        # PennyLane QNN
+        # QNN
         models['pennylane_qnn'] = PennyLaneQNNWithAngleEncoding(
             n_qubits=n_qubits,
             n_layers=n_layers,

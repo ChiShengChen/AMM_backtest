@@ -1,0 +1,90 @@
+[
+  {
+    "Model":"Random Forest",
+    "Model_Type":"Classic ML",
+    "APR":0.1649014246,
+    "Sharpe_Ratio":1.7723471398,
+    "Max_Drawdown":-0.0670462292,
+    "Volatility":0.1504605971,
+    "Win_Rate":0.5812037281,
+    "Total_Trades":124,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"Gradient Boosting",
+    "Model_Type":"Classic ML",
+    "APR":0.0896711133,
+    "Sharpe_Ratio":1.701439315,
+    "Max_Drawdown":-0.072148405,
+    "Volatility":0.1014163067,
+    "Win_Rate":0.5612823158,
+    "Total_Trades":137,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"Logistic Regression",
+    "Model_Type":"Classic ML",
+    "APR":0.1359157684,
+    "Sharpe_Ratio":1.9085120087,
+    "Max_Drawdown":-0.0892683539,
+    "Volatility":0.1106854049,
+    "Win_Rate":0.6108484486,
+    "Total_Trades":71,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"VQE Classifier",
+    "Model_Type":"Quantum ML",
+    "APR":0.0224357674,
+    "Sharpe_Ratio":1.6810323675,
+    "Max_Drawdown":-0.127531319,
+    "Volatility":0.1450839865,
+    "Win_Rate":0.6736772019,
+    "Total_Trades":157,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"QNN",
+    "Model_Type":"PennyLane",
+    "APR":0.2279744016,
+    "Sharpe_Ratio":1.4576932088,
+    "Max_Drawdown":-0.1451112334,
+    "Volatility":0.1593825735,
+    "Win_Rate":0.5841048247,
+    "Total_Trades":67,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"QASA Benchmark",
+    "Model_Type":"QASA Hybrid",
+    "APR":0.167994923,
+    "Sharpe_Ratio":2.1894879642,
+    "Max_Drawdown":-0.05417932,
+    "Volatility":0.0872888052,
+    "Win_Rate":0.6380304987,
+    "Total_Trades":57,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"Static Baseline",
+    "Model_Type":"Baseline",
+    "APR":0.0964508982,
+    "Sharpe_Ratio":0.95583127,
+    "Max_Drawdown":-0.1437340921,
+    "Volatility":0.1212098963,
+    "Win_Rate":0.6593420559,
+    "Total_Trades":103,
+    "Source":"Mock_Data"
+  },
+  {
+    "Model":"Fixed Baseline",
+    "Model_Type":"Baseline",
+    "APR":0.0364333151,
+    "Sharpe_Ratio":0.9912207184,
+    "Max_Drawdown":-0.1448191888,
+    "Volatility":0.189725963,
+    "Win_Rate":0.6153081538,
+    "Total_Trades":89,
+    "Source":"Mock_Data"
+  }
+]

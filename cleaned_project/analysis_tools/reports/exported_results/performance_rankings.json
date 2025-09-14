@@ -1,0 +1,138 @@
+{
+  "annual_return": {
+    "rankings": {
+      "QASA Sequence": 0.1399010591811099,
+      "Random Forest": 0.1315983499319323,
+      "Transformer": 0.1231264017160946,
+      "Gradient Boosting": 0.1190505967750333,
+      "QASA Hybrid": 0.1172589680334351,
+      "QuantumRWKV": 0.0796461789176536,
+      "QSVM": 0.0543061487436028,
+      "QNN": 0.0476508901716373,
+      "Logistic Regression": 0.0441531454329307,
+      "VQE Classifier": 0.0300181296186528
+    },
+    "top_3": {
+      "QASA Sequence": 0.1399010591811099,
+      "Random Forest": 0.1315983499319323,
+      "Transformer": 0.1231264017160946
+    }
+  },
+  "sharpe_ratio": {
+    "rankings": {
+      "QASA Sequence": 1.7613442702657718,
+      "Random Forest": 1.6804096991308282,
+      "Gradient Boosting": 1.6770605806569914,
+      "QASA Hybrid": 1.3238915745710425,
+      "Transformer": 1.231264017160946,
+      "QuantumRWKV": 1.185210995798418,
+      "Logistic Regression": 1.055836086439648,
+      "QSVM": 0.866992900994361,
+      "QNN": 0.8239633092178951,
+      "VQE Classifier": 0.7879759024896371
+    },
+    "top_3": {
+      "QASA Sequence": 1.7613442702657718,
+      "Random Forest": 1.6804096991308282,
+      "Gradient Boosting": 1.6770605806569914
+    }
+  },
+  "calmar_ratio": {
+    "rankings": {
+      "QASA Hybrid": 6.514387112968622,
+      "QASA Sequence": 2.855123656757345,
+      "QuantumRWKV": 2.413520573262233,
+      "Gradient Boosting": 2.1645563050006063,
+      "Random Forest": 1.6449793741491543,
+      "Transformer": 1.5390800214511824,
+      "QNN": 1.2878618965307385,
+      "Logistic Regression": 0.7884490255880487,
+      "VQE Classifier": 0.5175539589422904,
+      "QSVM": 0.5123221579585173
+    },
+    "top_3": {
+      "QASA Hybrid": 6.514387112968622,
+      "QASA Sequence": 2.855123656757345,
+      "QuantumRWKV": 2.413520573262233
+    }
+  },
+  "win_rate": {
+    "rankings": {
+      "QASA Sequence": 0.6084590991627955,
+      "Transformer": 0.5911831589357947,
+      "QuantumRWKV": 0.5696970315504979,
+      "VQE Classifier": 0.5583190286160754,
+      "QASA Hybrid": 0.5311688058733124,
+      "QSVM": 0.527514962505214,
+      "Logistic Regression": 0.523357028219373,
+      "QNN": 0.5233045060023634,
+      "Random Forest": 0.520207445491051,
+      "Gradient Boosting": 0.5162786782757831
+    },
+    "top_3": {
+      "QASA Sequence": 0.6084590991627955,
+      "Transformer": 0.5911831589357947,
+      "QuantumRWKV": 0.5696970315504979
+    }
+  },
+  "max_drawdown": {
+    "rankings": {
+      "QSVM": -0.1009903818740684,
+      "Transformer": -0.0820842678107297,
+      "Random Forest": -0.0809835999581121,
+      "Gradient Boosting": -0.0569372419358855,
+      "VQE Classifier": -0.0544078599338082,
+      "Logistic Regression": -0.0537516553096548,
+      "QASA Sequence": -0.0493176395674416,
+      "QNN": -0.0367308945073037,
+      "QuantumRWKV": -0.0312895702890782,
+      "QASA Hybrid": -0.0170214631016276
+    },
+    "top_3": {
+      "QSVM": -0.1009903818740684,
+      "Transformer": -0.0820842678107297,
+      "Random Forest": -0.0809835999581121
+    }
+  },
+  "overall": {
+    "rankings": {
+      "QASA Sequence": 1.7613442702657718,
+      "Random Forest": 1.6804096991308282,
+      "Gradient Boosting": 1.6770605806569914,
+      "QASA Hybrid": 1.3238915745710425,
+      "Transformer": 1.231264017160946,
+      "QuantumRWKV": 1.185210995798418,
+      "Logistic Regression": 1.055836086439648,
+      "QSVM": 0.866992900994361,
+      "QNN": 0.8239633092178951,
+      "VQE Classifier": 0.7879759024896371
+    },
+    "top_5": {
+      "QASA Sequence": {
+        "sharpe_ratio_mean": 1.7613442702657718,
+        "annual_return_mean": 0.1399010591811099,
+        "volatility_mean": 0.0835380425326051
+      },
+      "Random Forest": {
+        "sharpe_ratio_mean": 1.6804096991308282,
+        "annual_return_mean": 0.1315983499319323,
+        "volatility_mean": 0.1488073649230311
+      },
+      "Gradient Boosting": {
+        "sharpe_ratio_mean": 1.6770605806569914,
+        "annual_return_mean": 0.1190505967750333,
+        "volatility_mean": 0.1449311612913449
+      },
+      "QASA Hybrid": {
+        "sharpe_ratio_mean": 1.3238915745710425,
+        "annual_return_mean": 0.1172589680334351,
+        "volatility_mean": 0.1304978837791456
+      },
+      "Transformer": {
+        "sharpe_ratio_mean": 1.231264017160946,
+        "annual_return_mean": 0.1231264017160946,
+        "volatility_mean": 0.1539080021451182
+      }
+    }
+  }
+}

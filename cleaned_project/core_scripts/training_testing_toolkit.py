@@ -480,7 +480,7 @@ class QuantumTrainer:
         }
     
     def _train_qiskit_vqc(self, X: np.ndarray, y: np.ndarray):
-        """訓練Qiskit VQC"""
+        """訓練VQE Classifier"""
         feature_map = ZZFeatureMap(feature_dimension=X.shape[1], reps=1)
         ansatz = TwoLocal(X.shape[1], ['ry', 'rz'], 'cz', reps=2)
         
@@ -495,7 +495,7 @@ class QuantumTrainer:
         return vqc
     
     def _train_pennylane_qnn(self, X: np.ndarray, y: np.ndarray):
-        """訓練PennyLane QNN"""
+        """訓練QNN"""
         n_qubits = min(4, X.shape[1])
         device = qml.device('default.qubit', wires=n_qubits)
         
