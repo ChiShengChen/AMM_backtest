@@ -130,11 +130,11 @@ class BaseStrategy(ABC):
             new_lower, new_upper = new_range
             current_lower, current_upper = current_range
             
-            # Check if range boundaries have moved by more than 1%
+            # Check if range boundaries have moved by more than 0.1% (降低閾值)
             lower_change = abs(new_lower - current_lower) / current_lower
             upper_change = abs(new_upper - current_upper) / current_upper
             
-            if lower_change > 0.01 or upper_change > 0.01:
+            if lower_change > 0.001 or upper_change > 0.001:  # 降低到0.1%
                 return True
         
         # Check if liquidity has changed significantly

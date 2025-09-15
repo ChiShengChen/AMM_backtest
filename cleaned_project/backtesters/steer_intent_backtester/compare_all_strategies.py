@@ -191,26 +191,26 @@ def main():
             "width_value": 5.0,  # Reduced from 10% to 5%
             "placement_mode": "center",
             "curve_type": "uniform",
-            "liquidity_scale": 0.0001  # More conservative scaling
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'channel_multiplier': {
             "width_pct": 5.0,  # Reduced from 10% to 5%
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'bollinger': {
             "n": 20,
             "k": 1.5,  # Reduced from 2.0 to 1.5
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'keltner': {
             "n": 20,
             "m": 1.5,  # Reduced from 2.0 to 1.5
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'donchian': {
             "n": 20,
             "width_multiplier": 0.8,  # Reduced from 1.0 to 0.8
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'stable': {
             "peg_method": "sma",
@@ -218,14 +218,14 @@ def main():
             "width_pct": 10.0,  # Reduced from 15% to 10%
             "curve_type": "gaussian",
             "bin_count": 3,  # Reduced from 5 to 3
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         },
         'fluid': {
             "ideal_ratio": 1.0,
             "acceptable_ratio": 0.15,  # Increased from 0.1 to 0.15
             "sprawl_type": "dynamic",
             "tail_weight": 0.15,  # Reduced from 0.2 to 0.15
-            "liquidity_scale": 0.0001
+            "liquidity_scale": 0.01  # 修復：使用更保守的流動性規模
         }
     }
     

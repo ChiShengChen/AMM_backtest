@@ -151,6 +151,7 @@ class Portfolio:
     ) -> float:
         """
         Rebalance portfolio to new position ranges and liquidities.
+        修復：防止現金耗盡的重新平衡邏輯
         
         Args:
             new_ranges: List of (lower, upper) price ranges
@@ -163,60 +164,76 @@ class Portfolio:
         if len(new_ranges) != len(new_liquidities):
             raise ValueError("Number of ranges must match number of liquidities")
         
-        # Calculate current position values
-        current_values = []
+        # 計算當前持倉的總價值
+        current_total_value = 0.0
         for position in self.positions:
             _, _, value = position.get_value(current_price)
-            current_values.append(value + position.fees_earned)
+            current_total_value += value + position.fees_earned
         
-        # Calculate new position values
-        new_values = []
+        # 計算新持倉的總價值
+        new_total_value = 0.0
         for (lower, upper), liquidity in zip(new_ranges, new_liquidities):
             from .uv3_math import calculate_position_value
             _, _, value = calculate_position_value(current_price, lower, upper, liquidity)
-            new_values.append(value)
+            new_total_value += value
         
-        # Calculate rebalancing costs
-        total_cost = 0.0
+        # 修復：正確計算重新平衡成本
+        # 只收取手續費，不收取價值差額
+        total_position_value = max(current_total_value, new_total_value)
         
-        # Remove old positions
-        for position in self.positions:
-            _, _, value = position.get_value(current_price)
-            self.cash += value + position.fees_earned
+        # 限制手續費，避免過度消耗現金
+        max_fee_ratio = 0.01  # 最多收取1%的手續費
+        rebalance_cost = min(
+            total_position_value * (self.fee_bps / 10000.0),
+            total_position_value * max_fee_ratio
+        )
         
-        # Clear positions
+        # 進一步限制：手續費不應超過現金的50%
+        max_fee_from_cash = self.cash * 0.5
+        rebalance_cost = min(rebalance_cost, max_fee_from_cash)
+        
+        # 檢查現金是否足夠支付手續費
+        if self.cash < rebalance_cost:
+            # 如果現金不足，調整持倉規模以匹配可用現金
+            if self.cash > 0:
+                scale_factor = self.cash / rebalance_cost
+                new_liquidities = [liq * scale_factor for liq in new_liquidities]
+                rebalance_cost = self.cash
+            else:
+                # 現金完全耗盡，停止重新平衡
+                new_liquidities = [0.0] * len(new_liquidities)
+                rebalance_cost = 0.0
+        
+        # 清除舊持倉
         self.positions.clear()
         
-        # Add new positions
+        # 添加新持倉
         for (lower, upper), liquidity in zip(new_ranges, new_liquidities):
-            new_position = Position(lower, upper, liquidity)
-            self.positions.append(new_position)
-            
-            # Calculate cost to create position
-            _, _, value = new_position.get_value(current_price)
-            cost = value * (self.fee_bps / 10000.0)  # Trading fees
-            total_cost += cost
+            if liquidity > 0:  # 只添加有效的持倉
+                new_position = Position(lower, upper, liquidity)
+                self.positions.append(new_position)
         
-        # Update cash
-        self.cash -= total_cost
+        # 更新現金（只扣除手續費）
+        self.cash -= rebalance_cost
         
-        # Add gas costs
-        if self.gas_cost > 0:
-            total_cost += self.gas_cost
+        # 添加gas成本
+        if self.gas_cost > 0 and self.cash >= self.gas_cost:
+            self.cash -= self.gas_cost
             self.total_gas_paid += self.gas_cost
+            rebalance_cost += self.gas_cost
         
-        # Update transaction history
+        # 更新交易歷史
         self.transaction_history.append({
             "timestamp": datetime.now(),
             "type": "rebalance",
-            "cost": total_cost,
+            "cost": rebalance_cost,
             "positions_count": len(self.positions)
         })
         
         self.rebalance_count += 1
-        self.total_fees_paid += total_cost
+        self.total_fees_paid += rebalance_cost
         
-        return total_cost
+        return rebalance_cost
     
     def add_fees_to_positions(self, volume_data: pd.DataFrame, liquidity_share: float):
         """

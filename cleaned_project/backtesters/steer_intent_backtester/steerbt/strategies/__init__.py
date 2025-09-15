@@ -43,3 +43,33 @@ if QUANTUM_STRATEGIES_AVAILABLE:
         "QuantumKeltnerStrategy",
         "QuantumHybridStrategy",
     ])
+
+# Strategy registry
+STRATEGY_REGISTRY = {
+    'classic': ClassicStrategy,
+    'channel_multiplier': ChannelMultiplierStrategy,
+    'bollinger': BollingerStrategy,
+    'keltner': KeltnerStrategy,
+    'donchian': DonchianStrategy,
+    'stable': StableStrategy,
+    'fluid': FluidStrategy,
+    'imperfect_classic': ImperfectClassicStrategy,
+    'ml_bollinger': MLBollingerStrategy,
+    'ml_keltner': MLKeltnerStrategy,
+    'ml_donchian': MLDonchianStrategy,
+    'ml_hybrid': MLHybridStrategy,
+}
+
+# Add quantum strategies to registry if available
+if QUANTUM_STRATEGIES_AVAILABLE:
+    STRATEGY_REGISTRY.update({
+        'quantum_bollinger': QuantumBollingerStrategy,
+        'quantum_keltner': QuantumKeltnerStrategy,
+        'quantum_hybrid': QuantumHybridStrategy,
+    })
+
+def get_strategy_class(strategy_name: str):
+    """Get strategy class by name."""
+    if strategy_name not in STRATEGY_REGISTRY:
+        raise ValueError(f"Unknown strategy: {strategy_name}. Available strategies: {list(STRATEGY_REGISTRY.keys())}")
+    return STRATEGY_REGISTRY[strategy_name]

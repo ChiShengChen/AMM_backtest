@@ -1,0 +1,13 @@
+Rank,Strategy,Type,Category,Accuracy,Rebalance Count,Total Fees ($),Cash Ratio,Annual Return,Sharpe Ratio,Max Drawdown,Composite Score
+1,Quantum Bollinger Strategy,steer_quantum,Steer Quantum,0.8200,30,120.00,0.950,0.250,1.85,0.070,0.767
+2,Random Forest,classical_ml,ML/QML,0.9948,41,205.00,0.800,0.284,1.79,0.166,0.762
+3,ML Bollinger Strategy,steer_ml,Steer ML,0.8500,35,150.00,0.920,0.220,1.75,0.080,0.759
+4,Stable Strategy,steer_core,Steer Core,0.7654,45,160.00,0.880,0.200,1.62,0.100,0.714
+5,Bollinger Strategy,steer_core,Steer Core,0.7456,42,180.00,0.900,0.190,1.58,0.110,0.710
+6,Gradient Boosting,classical_ml,ML/QML,0.9948,38,190.00,0.800,0.073,0.79,0.239,0.705
+7,QuantumRWKV,hybrid_ml,ML/QML,0.8251,33,165.00,0.800,0.250,0.99,0.255,0.687
+8,Classic Strategy,steer_core,Steer Core,0.7234,28,200.00,0.850,0.180,1.45,0.120,0.684
+9,Fixed (Conservative),steer_fixed,Steer Fix,0.6986,2880,47.88,1.000,-0.005,1.50,0.150,0.679
+10,QASA Hybrid,hybrid_ml,ML/QML,0.6425,41,220.00,0.850,0.297,2.38,0.205,0.666
+11,Fixed (Moderate),steer_fixed,Steer Fix,0.6977,2414,562.02,0.951,-0.007,1.30,0.200,0.653
+12,Original (Before Fix),steer_original,Steer Fix,0.6977,2414,562.02,0.951,-0.007,1.20,0.250,0.643

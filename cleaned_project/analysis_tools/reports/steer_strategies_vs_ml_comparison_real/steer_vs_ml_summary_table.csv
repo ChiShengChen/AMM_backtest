@@ -1,0 +1,18 @@
+Strategy/Model,Type,Total Return (%),Max Drawdown (%),Sharpe Ratio,Rebalance Count,Final Value,Fees Paid
+Classic Strategy,Steer,86301.56,0.00,6.91,5899,"8,640,156",1.40e-26
+Channel Multiplier Strategy,Steer,116028.79,0.00,8.54,9285,"11,612,879",1.20e-22
+Bollinger Strategy,Steer,66809.34,0.00,6.92,7641,"6,690,934",6.20e-23
+Keltner Strategy,Steer,65568.08,0.00,7.01,5133,"6,566,808",2.90e-23
+Donchian Strategy,Steer,86075.13,0.00,7.26,5616,"8,617,513",5.80e-23
+Stable Strategy,Steer,101673.26,0.00,9.29,4219,"10,177,326",6.60e-27
+Fluid Strategy,Steer,116028.79,0.00,8.54,9590,"11,612,879",2.60e-26
+Random Forest,Classical Ml,42.55,24.07,0.58,51,"11,014",1.13e+02
+Gradient Boosting,Classical Ml,17.43,5.41,1.11,37,"13,408",8.27e+02
+Logistic Regression,Classical Ml,12.58,14.15,1.00,46,"13,590",8.12e+02
+VQE Classifier,Quantum Ml,28.15,11.51,1.35,45,"11,032",6.71e+02
+QNN,Quantum Ml,46.01,8.02,1.83,41,"12,424",3.42e+02
+QSVM,Quantum Ml,26.23,22.65,0.86,34,"11,640",8.77e+02
+QASA Hybrid,Hybrid Ml,29.80,6.99,1.03,34,"14,645",5.42e+02
+QuantumRWKV,Hybrid Ml,17.75,21.56,1.45,42,"13,062",6.19e+02
+LSTM_QNN,Hybrid Ml,31.50,20.77,1.67,38,"14,605",2.85e+02
+QASA Sequence,Hybrid Ml,10.74,8.97,1.12,33,"14,373",3.69e+02

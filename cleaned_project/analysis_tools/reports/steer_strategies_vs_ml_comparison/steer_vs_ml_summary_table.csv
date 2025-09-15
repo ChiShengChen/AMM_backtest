@@ -1,0 +1,18 @@
+Strategy/Model,Type,Accuracy,Rebalance Count,Sharpe Ratio,Max Drawdown,Annual Return,Volatility
+Classic Strategy,Steer,0.7234,28,1.45,0.120,0.180,0.150
+Channel Multiplier Strategy,Steer,0.6891,35,1.32,0.140,0.160,0.170
+Bollinger Strategy,Steer,0.7456,42,1.58,0.110,0.190,0.140
+Keltner Strategy,Steer,0.7123,38,1.41,0.130,0.170,0.160
+Donchian Strategy,Steer,0.6789,31,1.28,0.150,0.150,0.180
+Stable Strategy,Steer,0.7654,45,1.62,0.100,0.200,0.130
+Fluid Strategy,Steer,0.7012,33,1.35,0.140,0.160,0.160
+Random Forest,Classical Ml,0.9948,41,1.79,0.166,0.284,0.281
+Gradient Boosting,Classical Ml,0.9948,38,0.79,0.239,0.073,0.209
+Logistic Regression,Classical Ml,0.6373,48,1.47,0.056,0.150,0.326
+VQE Classifier,Quantum Ml,0.5440,52,2.05,0.277,0.074,0.192
+QNN,Quantum Ml,0.3731,53,0.73,0.210,0.143,0.190
+QSVM,Quantum Ml,0.5130,50,1.94,0.229,0.082,0.217
+QASA Hybrid,Hybrid Ml,0.6425,41,2.38,0.205,0.297,0.244
+QuantumRWKV,Hybrid Ml,0.8251,33,0.99,0.255,0.250,0.320
+LSTM_QNN,Hybrid Ml,0.6448,37,0.83,0.271,0.094,0.243
+QASA Sequence,Hybrid Ml,0.6448,34,0.97,0.215,0.266,0.116

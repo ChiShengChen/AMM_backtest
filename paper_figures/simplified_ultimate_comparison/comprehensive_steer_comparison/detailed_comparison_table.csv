@@ -1,0 +1,17 @@
+Rank,Strategy,Category,Complexity,Accuracy,Rebalance Count,Total Fees ($),Cash Ratio,Sharpe Ratio,Max Drawdown,Annual Return,Efficiency Ratio,Composite Score
+1,Classic Strategy,Core,Medium,0.6738,2127,261.82,0.810,0.99,0.104,0.078,0.855,0.653
+2,ML Bollinger Strategy,ML,High,0.6124,1063,154.69,0.705,1.30,0.116,0.161,0.808,0.635
+3,PennyLane Quantum Strategy,Quantum,Very High,0.5875,524,92.60,0.731,0.67,0.108,0.008,0.735,0.577
+4,Quantum Bollinger Strategy,Quantum,Very High,0.4224,646,36.99,0.709,1.07,0.125,0.121,0.705,0.537
+5,Fluid Strategy,Core,High,0.6109,1726,277.34,0.625,0.93,0.196,-0.004,0.641,0.536
+6,Stable Strategy,Core,High,0.5140,1763,334.56,0.759,0.94,0.064,0.186,0.436,0.510
+7,Channel Multiplier Strategy,Core,Low,0.6646,2051,317.37,0.850,0.84,0.116,-0.182,0.560,0.508
+8,Bollinger Strategy,Core,Medium,0.4828,1674,181.53,0.840,0.92,0.072,0.047,0.520,0.496
+9,ML Keltner Strategy,ML,High,0.6135,731,153.54,0.681,1.30,0.091,-0.020,0.421,0.488
+10,ML Hybrid Strategy,ML,Very High,0.6005,1103,109.70,0.627,0.77,0.081,0.216,0.261,0.485
+11,Imperfect Classic Strategy,Specialized,Medium,0.5531,2521,299.53,0.726,1.04,0.133,0.032,0.395,0.464
+12,Donchian Strategy,Core,Medium,0.6239,1760,312.14,0.901,0.90,0.183,-0.033,0.399,0.464
+13,ML Donchian Strategy,ML,High,0.6306,934,172.32,0.712,0.51,0.150,-0.028,0.320,0.450
+14,Keltner Strategy,Core,Medium,0.6319,1665,281.33,0.749,1.01,0.074,0.070,0.178,0.442
+15,Quantum Hybrid Strategy,Quantum,Very High,0.4187,942,48.61,0.623,1.21,0.143,0.089,0.381,0.429
+16,Quantum Keltner Strategy,Quantum,Very High,0.5127,579,160.34,0.640,1.18,0.057,0.217,0.091,0.413

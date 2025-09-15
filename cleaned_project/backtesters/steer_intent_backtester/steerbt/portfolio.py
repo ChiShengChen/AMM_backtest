@@ -39,7 +39,7 @@ class Position:
         Returns:
             Tuple of (amount0, amount1, total_value_usd)
         """
-        from .uv3_math import calculate_position_value
+        from .uv3_math_stable import calculate_position_value
         
         return calculate_position_value(
             current_price,
@@ -172,7 +172,7 @@ class Portfolio:
         # Calculate new position values
         new_values = []
         for (lower, upper), liquidity in zip(new_ranges, new_liquidities):
-            from .uv3_math import calculate_position_value
+            from .uv3_math_stable import calculate_position_value
             _, _, value = calculate_position_value(current_price, lower, upper, liquidity)
             new_values.append(value)
         

@@ -1,0 +1,8 @@
+strategy,return_pct,max_drawdown_pct,sharpe_ratio,rebalance_count,final_value,total_fees_paid,results
+classic,0,0,0,0,0,0,
+channel_multiplier,0,0,0,0,0,0,
+bollinger,0,0,0,0,0,0,
+keltner,0,0,0,0,0,0,
+donchian,0,0,0,0,0,0,
+stable,0,0,0,0,0,0,
+fluid,0,0,0,0,0,0,

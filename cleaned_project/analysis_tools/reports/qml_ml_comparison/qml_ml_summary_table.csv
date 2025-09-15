@@ -1,0 +1,11 @@
+Model,Type,Accuracy,Rebalance Count,Training Time (s),Memory Usage (MB)
+Random Forest,Classical,0.9948,40,58.3,101.7
+Gradient Boosting,Classical,0.9948,47,43.2,171.3
+Logistic Regression,Classical,0.6373,36,25.3,300.3
+VQE Classifier,Quantum,0.5440,50,85.7,196.0
+QNN,Quantum,0.3731,49,17.0,464.1
+QSVM,Quantum,0.5130,35,67.2,95.5
+QASA Hybrid,Hybrid,0.6425,51,28.7,470.5
+QuantumRWKV,Hybrid,0.8251,42,11.0,136.0
+LSTM_QNN,Hybrid,0.6448,49,30.3,374.8
+QASA Sequence,Hybrid,0.6448,30,25.4,350.7
