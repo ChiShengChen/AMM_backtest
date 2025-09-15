@@ -3,10 +3,12 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Quantum](https://img.shields.io/badge/Quantum-ML-purple.svg)](https://pennylane.ai)
+[![Steer](https://img.shields.io/badge/Steer-Intent-orange.svg)](https://uniswap.org)
 
-## ⭐ Main Entry Point
+## ⭐ Main Entry Points
 
-**`python analysis_tools/unified_label_training.py`** is the core file of this project!
+### 1. **Unified ML Training** (Core Research)
+**`python cleaned_project/analysis_tools/unified_label_training.py`**
 
 This script will:
 - 🚀 Train 10 different machine learning models (classical + quantum + hybrid)
@@ -14,10 +16,24 @@ This script will:
 - 🔍 Perform uncertainty analysis and risk assessment
 - 💾 Save complete training results and reports
 
+### 2. **Steer Strategy Comparison** (Trading Strategies)
+**`python chart_generators/run_all_analysis.py`**
+
+This script will:
+- 🔧 Fix steer strategy cash depletion issues
+- 📈 Generate comprehensive strategy comparison charts
+- 🏆 Compare Fixed, ML, and Quantum strategies
+- 📊 Create performance analysis and ranking tables
+
 **Quick Start**:
 ```bash
+# ML Research (Core)
 cd cleaned_project/analysis_tools
 python unified_label_training.py
+
+# Trading Strategies (Steer)
+cd chart_generators
+python run_all_analysis.py
 ```
 
 ---
@@ -28,33 +44,39 @@ This project is a comprehensive comparative study of quantum machine learning ve
 
 ## 🚀 Quick Start
 
-### 1. Use Cleaned Project (Recommended)
+### 1. **ML Research** (Core Project)
 ```bash
 cd cleaned_project
 pip install -r requirements.txt
-python run_all_experiments.py
-```
 
-### 2. Execute Core Functions Separately
-```bash
-# Classical Machine Learning Training
+# Unified ML Training (Recommended)
+python analysis_tools/unified_label_training.py
+
+# Individual Model Training
 python core_scripts/improved_training_demo.py
-
-# Quantum Machine Learning Training
 python core_scripts/improved_quantum_training_demo.py
-
-# Unified Model Comparison Analysis
-python analysis_tools/create_unified_model_comparison.py
 ```
 
-### 3. Backtesting Systems
+### 2. **Trading Strategies** (Steer Intent)
+```bash
+# Complete Steer Strategy Analysis
+cd chart_generators
+python run_all_analysis.py
+
+# Individual Analysis Steps
+python run_steer_comparison.py
+python create_enhanced_comparison_charts.py
+python create_improved_comparison_charts.py
+```
+
+### 3. **Backtesting Systems**
 ```bash
 # AMM Backtesting
-cd backtesters/amm-rebalance-backtester
+cd amm-rebalance-backtester
 python run.py quick --pool ETHUSDC --freq 1h
 
-# Concentrated Liquidity Backtesting
-cd backtesters/steer_intent_backtester
+# Steer Intent Backtesting
+cd steer_intent_backtester
 python cli.py backtest --pair ETHUSDC --interval 1h
 ```
 
@@ -62,51 +84,65 @@ python cli.py backtest --pair ETHUSDC --interval 1h
 
 ```
 Omnis_bt/
-├── cleaned_project/           # 🎯 Recommended - Clean Core Project
+├── cleaned_project/           # 🎯 ML Research - Core Project
+│   ├── analysis_tools/       # ML Analysis Tools
 │   ├── core_scripts/         # Core Execution Scripts
-│   ├── analysis_tools/       # Analysis Tools
 │   ├── backtesters/          # Backtesting Systems
 │   ├── paper_assets/         # Paper Resources
-│   └── README.md             # Detailed Usage Instructions
+│   └── README.md             # ML Research Documentation
+├── chart_generators/         # 🚀 Trading Strategies - Steer Analysis
+│   ├── run_all_analysis.py   # Main Analysis Script
+│   ├── run_steer_comparison.py
+│   ├── create_enhanced_comparison_charts.py
+│   ├── create_improved_comparison_charts.py
+│   └── README.md             # Trading Strategy Documentation
 ├── amm-rebalance-backtester/ # AMM Backtesting System
-├── steer_intent_backtester/  # Concentrated Liquidity Backtesting System
+├── steer_intent_backtester/  # Steer Intent Backtesting System
 ├── paper_figures/            # Paper Figure Resources
+├── simplified_ultimate_comparison/ # Final Comparison Results
 └── PROJECT_STRUCTURE.md      # Detailed Project Structure
 ```
 
 ## 🔬 Research Content
 
-### Model Types
-- **Classical Machine Learning**: Random Forest, Gradient Boosting, Logistic Regression
-- **Quantum Machine Learning**: Qiskit VQC, PennyLane QNN
-- **Hybrid Models**: QASA (Quantum-Classical Hybrid)
+### ML Research (cleaned_project/)
+- **Classical ML**: Random Forest, Gradient Boosting, Logistic Regression
+- **Quantum ML**: Qiskit VQC, PennyLane QNN, VQE Classifier
+- **Hybrid Models**: QASA, QuantumRWKV, LSTM_QNN
+- **Feature Engineering**: 122 technical indicators, angle encoding
+- **Uncertainty Analysis**: Error bars, confidence intervals
 
-### Feature Engineering
-- **Classical Features**: 122 technical indicators and market features
-- **Quantum Features**: Angle encoding mapped to [0, 2π] range
-- **Feature Selection**: Importance-based feature ranking
+### Trading Strategies (chart_generators/)
+- **Fixed Strategies**: Conservative, Moderate (Classic-based)
+- **ML Strategies**: ML Bollinger, ML Keltner, ML Donchian
+- **Quantum Strategies**: Quantum Bollinger, Quantum Keltner, Quantum Hybrid
+- **Steer Intent**: 16 different CLMM strategies
+- **Performance Metrics**: APR, Sharpe Ratio, Rebalance Count, Max Drawdown
 
-### Backtesting Strategies
+### Backtesting Systems
 - **AMM Strategy**: Automated Market Maker rebalancing
-- **Concentrated Liquidity**: Bollinger Band position management
+- **Steer Intent**: Concentrated Liquidity position management
 - **Multi-Asset Support**: BTCUSDC, ETHUSDC, USDCUSDT
 
 ## 📊 Key Findings
 
-### Quantum Model Advantages
-- Excellent performance in BTCUSDC asset trading
-- 8.97% average return advantage in technical indicator pattern recognition tasks
-- Quantum entanglement advantages in nonlinear relationship processing
+### ML Research Results
+- **Quantum Models**: VQE Classifier ~54% accuracy, QNN ~82% accuracy
+- **Classical Models**: Random Forest, Gradient Boosting >99% accuracy
+- **Hybrid Models**: QuantumRWKV ~83% accuracy, LSTM_QNN competitive
+- **Feature Importance**: `price_ma_ratio` is the most critical feature
 
-### Classical Model Stability
-- More stable in high volatility environments (like ETHUSDC)
-- Fast response and computational efficiency advantages
-- Reliability in production environments
+### Trading Strategy Results
+- **Fixed Strategies**: Conservative (5% width) vs Moderate (10% width)
+- **ML Strategies**: ML Bollinger 85% accuracy, 35 rebalances/year
+- **Quantum Strategies**: Quantum Bollinger 82% accuracy, 30 rebalances/year
+- **Performance**: Quantum strategies show better efficiency (lower rebalance, higher returns)
 
-### Hybrid Strategies
-- QASA performs best in specific scenarios
-- Combines quantum computing advantages with classical stability
-- Validation of feature engineering effectiveness
+### Strategy Comparison
+- **Fixed (Conservative)**: 5% width, uniform distribution, capital preservation
+- **Fixed (Moderate)**: 10% width, uniform distribution, balanced approach
+- **ML Bollinger**: Random Forest + Bollinger Bands, 70% ML + 30% traditional
+- **Quantum Bollinger**: QNN + Bollinger Bands, quantum confidence adjustment
 
 ## 🛠️ Technology Stack
 

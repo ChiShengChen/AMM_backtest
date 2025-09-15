@@ -1,152 +1,159 @@
-# Chart Generators - 圖表生成器
+# Chart Generators - Steer Strategy Analysis
 
-這個資料夾包含了所有用於生成steer策略比較圖表的Python腳本。
+This directory contains all Python scripts for generating comprehensive steer strategy comparison charts and analysis reports.
 
-## 📊 腳本分類
+## 📊 Script Categories
 
-### 🔧 核心腳本
+### 🔧 Core Scripts
 
 #### 1. **run_steer_comparison.py**
-- **用途**: 最初的steer策略修復和比較
-- **功能**: 
-  - 修復steer策略的現金耗盡問題
-  - 生成基礎的steer策略比較圖表
-  - 輸出重新平衡次數比較表格
-- **輸出**: `steer_comparison_results/` 目錄
+- **Purpose**: Initial steer strategy fix and comparison
+- **Features**: 
+  - Fix steer strategy cash depletion issues
+  - Generate basic steer strategy comparison charts
+  - Output rebalance count comparison tables
+- **Output**: `steer_comparison_results/` directory
 
 #### 2. **create_enhanced_comparison_charts.py**
-- **用途**: 增強版比較圖表生成器
-- **功能**:
-  - 生成類似QML/ML風格的比較圖表
-  - 包含準確率比較、重新平衡次數比較、權益曲線等
-- **輸出**: `simplified_ultimate_comparison/` 目錄
+- **Purpose**: Enhanced comparison chart generator
+- **Features**:
+  - Generate QML/ML style comparison charts
+  - Include accuracy comparison, rebalance count comparison, equity curves
+- **Output**: `simplified_ultimate_comparison/` directory
 
 #### 3. **create_improved_comparison_charts.py**
-- **用途**: 改進版圖表生成器
-- **功能**:
-  - 在效率分析圖中添加模型名稱標籤
-  - 移除性能熱力圖的標準化處理
-  - 按重新平衡次數從大到小排序
-- **輸出**: 更新 `simplified_ultimate_comparison/` 目錄
+- **Purpose**: Improved chart generator
+- **Features**:
+  - Add model name labels to efficiency analysis charts
+  - Remove normalization from performance heatmaps
+  - Sort rebalance charts from largest to smallest
+- **Output**: Updates `simplified_ultimate_comparison/` directory
 
 #### 4. **create_enhanced_efficiency_analysis.py**
-- **用途**: 最終版效率分析生成器
-- **功能**:
-  - 在風險回報圖中添加夏普比率參考線 (0.5, 1.0, 1.5, 2.0)
-  - 生成最完整的效率分析圖表
-- **輸出**: 更新 `simplified_ultimate_comparison/` 目錄
+- **Purpose**: Final efficiency analysis generator
+- **Features**:
+  - Add Sharpe ratio reference lines (0.5, 1.0, 1.5, 2.0) to risk-return charts
+  - Generate most complete efficiency analysis charts
+- **Output**: Updates `simplified_ultimate_comparison/` directory
 
-### 📈 擴展腳本
+### 📈 Extended Scripts
 
 #### 5. **create_steer_ml_comparison.py**
-- **用途**: Steer策略與ML/QML模型比較
-- **功能**: 生成steer策略與機器學習模型的對比圖表
+- **Purpose**: Steer strategy vs ML/QML model comparison
+- **Features**: Generate comparison charts between steer strategies and machine learning models
 
 #### 6. **create_detailed_steer_ml_comparison.py**
-- **用途**: 詳細的Steer vs ML比較
-- **功能**: 生成更詳細的比較分析，包括APR、性能曲線等
+- **Purpose**: Detailed Steer vs ML comparison
+- **Features**: Generate more detailed comparison analysis including APR, performance curves
 
 #### 7. **create_comprehensive_steer_comparison.py**
-- **用途**: 全面的Steer策略比較
-- **功能**: 分析所有16種steer策略的綜合性能
+- **Purpose**: Comprehensive steer strategy comparison
+- **Features**: Analyze all 16 steer strategies' comprehensive performance
 
 #### 8. **create_simplified_ultimate_comparison.py**
-- **用途**: 簡化版終極比較
-- **功能**: 整合所有比較結果，生成最終排名和報告
+- **Purpose**: Simplified ultimate comparison
+- **Features**: Integrate all comparison results, generate final rankings and reports
 
-### 📋 報告生成腳本
+### 📋 Report Generation Scripts
 
 #### 9. **create_final_enhanced_report.py**
-- **用途**: 最終增強版報告生成器
-- **功能**: 生成包含所有圖表的完整分析報告
+- **Purpose**: Final enhanced report generator
+- **Features**: Generate complete analysis reports including all charts
 
 #### 10. **create_final_summary_report.py**
-- **用途**: 最終總結報告生成器
-- **功能**: 生成簡化的總結報告
+- **Purpose**: Final summary report generator
+- **Features**: Generate simplified summary reports
 
 #### 11. **create_summary_visualization.py**
-- **用途**: 總結視覺化生成器
-- **功能**: 生成簡化的視覺化圖表
+- **Purpose**: Summary visualization generator
+- **Features**: Generate simplified visualization charts
 
-### 🧪 測試腳本
+### 🧪 Test Scripts
 
 #### 12. **test_steer_fix.py**
-- **用途**: Steer策略修復測試
-- **功能**: 驗證steer策略修復後的基本功能
+- **Purpose**: Steer strategy fix testing
+- **Features**: Verify basic functionality after steer strategy fixes
 
 #### 13. **test_steer_detailed.py**
-- **用途**: 詳細的Steer策略測試
-- **功能**: 全面測試steer策略的各種配置
+- **Purpose**: Detailed steer strategy testing
+- **Features**: Comprehensive testing of steer strategies with various configurations
 
-## 🚀 使用指南
+## 🚀 Usage Guide
 
-### 基本使用流程
+### Basic Usage Flow
 
-1. **修復和基礎比較**:
+1. **Fix and Basic Comparison**:
    ```bash
    python run_steer_comparison.py
    ```
 
-2. **生成增強版圖表**:
+2. **Generate Enhanced Charts**:
    ```bash
    python create_enhanced_comparison_charts.py
    ```
 
-3. **生成改進版圖表**:
+3. **Generate Improved Charts**:
    ```bash
    python create_improved_comparison_charts.py
    ```
 
-4. **生成最終版效率分析**:
+4. **Generate Final Efficiency Analysis**:
    ```bash
    python create_enhanced_efficiency_analysis.py
    ```
 
-### 完整分析流程
+### Complete Analysis Flow
 
 ```bash
-# 1. 基礎分析
+# 1. Basic Analysis
 python run_steer_comparison.py
 
-# 2. 增強版比較
+# 2. Enhanced Comparison
 python create_enhanced_comparison_charts.py
 
-# 3. 改進版圖表
+# 3. Improved Charts
 python create_improved_comparison_charts.py
 
-# 4. 最終版效率分析
+# 4. Final Efficiency Analysis
 python create_enhanced_efficiency_analysis.py
 
-# 5. 生成最終報告
+# 5. Generate Final Report
 python create_final_enhanced_report.py
 ```
 
-## 📁 輸出目錄
+### One-Command Analysis
 
-- `steer_comparison_results/` - 基礎steer策略比較結果
-- `simplified_ultimate_comparison/` - 終極比較結果
-- `steer_ml_comparison_results/` - Steer vs ML比較結果
-- `detailed_steer_ml_comparison/` - 詳細Steer vs ML比較結果
-- `comprehensive_steer_comparison/` - 全面Steer策略比較結果
+```bash
+# Run all analysis in sequence
+python run_all_analysis.py
+```
 
-## 🎯 主要圖表類型
+## 📁 Output Directories
 
-1. **準確率比較圖** - 條形圖 + 箱線圖
-2. **重新平衡次數比較圖** - 條形圖 + 箱線圖
-3. **權益曲線與不確定性帶** - 時間序列圖
-4. **性能熱力圖** - 標準化/非標準化熱力圖
-5. **效率分析圖** - 四面板散點圖分析
-6. **策略排名表** - 綜合性能排名
+- `steer_comparison_results/` - Basic steer strategy comparison results
+- `simplified_ultimate_comparison/` - Ultimate comparison results
+- `steer_ml_comparison_results/` - Steer vs ML comparison results
+- `detailed_steer_ml_comparison/` - Detailed Steer vs ML comparison results
+- `comprehensive_steer_comparison/` - Comprehensive steer strategy comparison results
 
-## 📊 圖表特色
+## 🎯 Main Chart Types
 
-- **英文標題和標籤** - 所有圖表都使用英文
-- **顏色編碼** - 按策略類型進行顏色區分
-- **高解析度** - 300 DPI輸出品質
-- **專業格式** - 符合學術和商業報告標準
-- **參考線** - 包含夏普比率等關鍵指標參考線
+1. **Accuracy Comparison Charts** - Bar charts + Box plots
+2. **Rebalance Count Comparison Charts** - Bar charts + Box plots
+3. **Equity Curves with Uncertainty Bands** - Time series charts
+4. **Performance Heatmaps** - Normalized/Non-normalized heatmaps
+5. **Efficiency Analysis Charts** - Four-panel scatter plot analysis
+6. **Strategy Ranking Tables** - Comprehensive performance rankings
 
-## 🔧 依賴套件
+## 📊 Chart Features
+
+- **English Titles and Labels** - All charts use English
+- **Color Coding** - Color-coded by strategy type
+- **High Resolution** - 300 DPI output quality
+- **Professional Format** - Academic and business report standards
+- **Reference Lines** - Include Sharpe ratio and other key indicator reference lines
+
+## 🔧 Dependencies
 
 - pandas
 - numpy
@@ -156,9 +163,36 @@ python create_final_enhanced_report.py
 - logging
 - warnings
 
-## 📝 注意事項
+## 📝 Notes
 
-1. 確保在運行腳本前已安裝所有依賴套件
-2. 某些腳本需要先運行前置腳本才能正常工作
-3. 輸出目錄會自動創建
-4. 所有圖表都保存在對應的結果目錄中
+1. Ensure all dependencies are installed before running scripts
+2. Some scripts require running prerequisite scripts first
+3. Output directories are created automatically
+4. All charts are saved in corresponding result directories
+
+## 🎯 Strategy Types Analyzed
+
+### Fixed Strategies
+- **Fixed (Conservative)**: 5% width, uniform distribution, capital preservation
+- **Fixed (Moderate)**: 10% width, uniform distribution, balanced approach
+- **Original (Before Fix)**: Original implementation with cash depletion issues
+
+### ML Strategies
+- **ML Bollinger**: Random Forest + Bollinger Bands (70% ML + 30% traditional)
+- **ML Keltner**: Random Forest + Keltner Channels
+- **ML Donchian**: Random Forest + Donchian Channels
+
+### Quantum Strategies
+- **Quantum Bollinger**: QNN + Bollinger Bands with quantum confidence adjustment
+- **Quantum Keltner**: QNN + Keltner Channels
+- **Quantum Hybrid**: Combined quantum models for intent and price prediction
+
+### Steer Intent Strategies
+- **Classic Strategy**: Base strategy with fixed parameters
+- **Channel Multiplier**: Single symmetric percentage width around current price
+- **Bollinger Strategy**: Traditional Bollinger Bands implementation
+- **Keltner Strategy**: Traditional Keltner Channels implementation
+- **Donchian Strategy**: Traditional Donchian Channels implementation
+- **Stable Strategy**: Multi-position strategy around calculated anchor
+- **Fluid Strategy**: Maintains value ratio towards ideal_ratio
+- **Imperfect Classic**: Classic strategy with imperfect execution

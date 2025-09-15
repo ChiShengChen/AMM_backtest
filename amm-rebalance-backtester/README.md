@@ -1,73 +1,73 @@
-# AMM 動態再平衡回測系統
+# AMM Dynamic Rebalancing Backtesting System
 
-> **🚀 一行命令回測**: `./run_single.sh BTCUSDC 1d 50`
+> **🚀 One-Command Backtesting**: `./run_single.sh BTCUSDC 1d 50`
 
-## 🎯 項目概述
+## 🎯 Project Overview
 
-這是一個專門用於 AMM（自動化做市商，主要針對 Uniswap V3）動態再平衡策略回測的 Python 系統。系統能夠比較固定策略與動態策略的表現，分析 IL/LVR 和摩擦成本，並通過參數優化找到最佳策略配置。
+This is a Python system specifically designed for AMM (Automated Market Maker, primarily targeting Uniswap V3) dynamic rebalancing strategy backtesting. The system can compare the performance of fixed strategies vs dynamic strategies, analyze IL/LVR and friction costs, and find optimal strategy configurations through parameter optimization.
 
-## 🚀 核心功能
+## 🚀 Core Features
 
-- **多策略回測**: 支持 Baseline 和 Dynamic 策略比較
-- **參數優化**: 使用 Optuna 進行超參數優化
-- **多幣種支持**: ETH/USDC、BTC/USDC、USDC/USDT 等
-- **多時間尺度**: 支持日線(1d)、小時線(1h)、分鐘線(1m)
-- **完整分析**: IL/LVR 分析、摩擦成本建模、風險指標計算
-- **自動化腳本**: 數據獲取、回測執行、結果整理
+- **Multi-Strategy Backtesting**: Supports Baseline and Dynamic strategy comparison
+- **Parameter Optimization**: Uses Optuna for hyperparameter optimization
+- **Multi-Asset Support**: ETH/USDC, BTC/USDC, USDC/USDT, etc.
+- **Multi-Timeframe**: Supports daily(1d), hourly(1h), minute(1m) data
+- **Complete Analysis**: IL/LVR analysis, friction cost modeling, risk metrics calculation
+- **Automation Scripts**: Data acquisition, backtest execution, result organization
 
-## 📊 策略類型
+## 📊 Strategy Types
 
-### Baseline 策略
-- **Baseline-Static**: 被動超寬位置策略，最小再平衡
-- **Baseline-Fixed**: 固定寬度位置，固定價格偏差觸發
+### Baseline Strategies
+- **Baseline-Static**: Passive ultra-wide position strategy, minimal rebalancing
+- **Baseline-Fixed**: Fixed width position, fixed price deviation trigger
 
-### Dynamic 策略
-- **Dynamic-Vol**: 波動率自適應寬度 + 價格偏差觸發
-- **Dynamic-Inventory**: 庫存偏差 + 費用密度觸發 + 低頻再投資
+### Dynamic Strategies
+- **Dynamic-Vol**: Volatility-adaptive width + price deviation trigger
+- **Dynamic-Inventory**: Inventory deviation + fee density trigger + low-frequency reinvestment
 
-## 🏗️ 系統架構
+## 🏗️ System Architecture
 
 ```
 amm-rebalance-backtester/
-├── src/                    # 核心代碼
-│   ├── core/              # 回測引擎、數學計算
-│   ├── strategies/        # 策略實現
-│   ├── io/                # 數據加載和驗證
-│   ├── opt/               # 參數優化
-│   └── reporting/         # 結果報告和圖表
-├── data/                  # 數據存儲
-├── results/               # 回測結果
-├── reports/               # 圖表和報告
-├── configs/               # 配置文件
-└── scripts/               # 自動化腳本
+├── src/                    # Core code
+│   ├── core/              # Backtesting engine, mathematical calculations
+│   ├── strategies/        # Strategy implementations
+│   ├── io/                # Data loading and validation
+│   ├── opt/               # Parameter optimization
+│   └── reporting/         # Result reporting and charts
+├── data/                  # Data storage
+├── results/               # Backtesting results
+├── reports/               # Charts and reports
+├── configs/               # Configuration files
+└── scripts/               # Automation scripts
 ```
 
-## 📥 數據獲取原理
+## 📥 Data Acquisition Principles
 
-### 1. 數據來源
-系統使用 **Binance REST API** 獲取歷史價格數據，支持：
-- **K-line 數據**: OHLCV (開盤、最高、最低、收盤、成交量)
-- **時間範圍**: 可自定義，默認 5 年日線數據
-- **幣種對**: 支持所有 Binance 交易對
+### 1. Data Sources
+The system uses **Binance REST API** to fetch historical price data, supporting:
+- **K-line Data**: OHLCV (Open, High, Low, Close, Volume)
+- **Time Range**: Customizable, default 5-year daily data
+- **Trading Pairs**: Supports all Binance trading pairs
 
-### 2. 數據獲取流程
+### 2. Data Acquisition Process
 
 ```bash
-# 使用自動化腳本下載數據
+# Use automation scripts to download data
 ./get_new_data.sh -s ETHUSDC,BTCUSDC -f 1d,1h -d 1825
 
-# 或快速添加新幣種
+# Or quickly add new trading pairs
 ./add_new_symbol.sh SOLUSDC 1d 365
 ```
 
-**內部實現**:
-1. **API 調用**: 使用 `requests` 庫調用 Binance API
-2. **分頁處理**: 自動處理 API 限制，分批獲取數據
-3. **數據清洗**: 處理缺失值、異常值、時間戳對齊
-4. **格式標準化**: 轉換為系統標準 CSV 格式
-5. **目錄組織**: 按幣種和時間尺度自動分類
+**Internal Implementation**:
+1. **API Calls**: Uses `requests` library to call Binance API
+2. **Pagination Handling**: Automatically handles API limits, fetches data in batches
+3. **Data Cleaning**: Handles missing values, outliers, timestamp alignment
+4. **Format Standardization**: Converts to system standard CSV format
+5. **Directory Organization**: Automatically categorizes by trading pair and timeframe
 
-### 3. 數據結構
+### 3. Data Structure
 ```csv
 timestamp,open,high,low,close,volume
 2020-09-05,335.22,394.61,309.57,335.22,1234567
@@ -75,98 +75,98 @@ timestamp,open,high,low,close,volume
 ...
 ```
 
-## 🔄 回測引擎原理
+## 🔄 Backtesting Engine Principles
 
-### 1. 回測流程
+### 1. Backtesting Process
 
 ```python
-# 核心回測流程
+# Core backtesting process
 BacktestEngine.run_full_evaluation() -> Dict[str, Any]
-├── 1. 數據加載和預處理
-├── 2. 策略初始化
-├── 3. 事件驅動模擬
-├── 4. 性能計算
-└── 5. 結果輸出
+├── 1. Data loading and preprocessing
+├── 2. Strategy initialization
+├── 3. Event-driven simulation
+├── 4. Performance calculation
+└── 5. Result output
 ```
 
-### 2. 策略執行機制
+### 2. Strategy Execution Mechanism
 
-**事件驅動架構**:
-- **價格事件**: 每個時間點的 OHLCV 數據
-- **再平衡觸發**: 基於策略邏輯的條件判斷
-- **交易執行**: 模擬真實的 AMM 操作
-- **費用計算**: 包括 Gas 費用、滑點、管理費
+**Event-Driven Architecture**:
+- **Price Events**: OHLCV data at each time point
+- **Rebalancing Triggers**: Condition-based judgment from strategy logic
+- **Trade Execution**: Simulates real AMM operations
+- **Cost Calculation**: Includes gas fees, slippage, management fees
 
-**策略邏輯示例**:
+**Strategy Logic Example**:
 ```python
-# Dynamic-Vol 策略核心邏輯
+# Dynamic-Vol strategy core logic
 def calculate_ranges(self, price_data, current_price, portfolio_value):
-    # 1. 計算波動率
+    # 1. Calculate volatility
     volatility = price_data['returns'].rolling(30).std()
     
-    # 2. 動態調整位置寬度
+    # 2. Dynamically adjust position width
     vol_adjustment = 1.5 - volatility * 10
     
-    # 3. 應用價格偏差觸發
+    # 3. Apply price deviation trigger
     if abs(price_change) > self.price_deviation_bps:
         return self._rebalance_positions()
     
     return current_ranges
 ```
 
-### 3. 性能指標計算
+### 3. Performance Metrics Calculation
 
-**收益率指標**:
-- **APR**: 年化收益率，基於累積收益計算
-- **MDD**: 最大回撤，使用滾動最大值計算
-- **Sharpe**: 夏普比率，風險調整後收益
-- **Calmar**: Calmar 比率，收益與回撤比
+**Return Metrics**:
+- **APR**: Annualized return rate, based on cumulative returns calculation
+- **MDD**: Maximum drawdown, using rolling maximum calculation
+- **Sharpe**: Sharpe ratio, risk-adjusted returns
+- **Calmar**: Calmar ratio, return to drawdown ratio
 
-**風險指標**:
-- **IL (Impermanent Loss)**: 無常損失計算
-- **LVR (Loss Versus Rebalancing)**: 相對於再平衡的損失
-- **波動率**: 日收益率標準差
+**Risk Metrics**:
+- **IL (Impermanent Loss)**: Impermanent loss calculation
+- **LVR (Loss Versus Rebalancing)**: Loss relative to rebalancing
+- **Volatility**: Daily return standard deviation
 
-## 🎛️ 參數優化原理
+## 🎛️ Parameter Optimization Principles
 
-### 1. Optuna 優化框架
+### 1. Optuna Optimization Framework
 
 ```python
-# 優化目標函數
+# Optimization objective function
 def _objective(self, trial):
-    # 1. 參數建議
+    # 1. Parameter suggestions
     k_width = trial.suggest_float('k_width', 0.8, 2.0)
     price_deviation_bps = trial.suggest_float('price_deviation_bps', 20, 120)
     rebalance_cooldown_hours = trial.suggest_int('rebalance_cooldown_hours', 6, 48)
     
-    # 2. 策略回測
+    # 2. Strategy backtesting
     strategy = DynamicVolatilityStrategy(k_width, price_deviation_bps, rebalance_cooldown_hours)
     results = self._run_backtest(strategy)
     
-    # 3. 返回優化目標 (最大化 APR)
+    # 3. Return optimization objective (maximize APR)
     return results['apr']
 ```
 
-### 2. 優化參數
+### 2. Optimization Parameters
 
-**核心參數**:
-- **k_width**: 位置寬度調整係數 (0.8-2.0)
-- **price_deviation_bps**: 價格偏差觸發閾值 (20-120 bps)
-- **rebalance_cooldown_hours**: 再平衡冷卻時間 (6-48 小時)
+**Core Parameters**:
+- **k_width**: Position width adjustment coefficient (0.8-2.0)
+- **price_deviation_bps**: Price deviation trigger threshold (20-120 bps)
+- **rebalance_cooldown_hours**: Rebalancing cooldown time (6-48 hours)
 
-**優化策略**:
-- **方向**: 最大化 APR
-- **試驗次數**: 可配置 (建議 20-100 次)
-- **搜索算法**: TPE (Tree-structured Parzen Estimator)
-- **早停機制**: 支持提前終止低質量試驗
+**Optimization Strategy**:
+- **Direction**: Maximize APR
+- **Trial Count**: Configurable (recommended 20-100 trials)
+- **Search Algorithm**: TPE (Tree-structured Parzen Estimator)
+- **Early Stopping**: Supports early termination of low-quality trials
 
-### 3. 優化結果
+### 3. Optimization Results
 
 ```bash
-# 運行優化
+# Run optimization
 python run.py full --pool ETHUSDC --freq 1d --study-name ethusdc_optimization --n-trials 20
 
-# 優化結果示例
+# Optimization results example
 Best trial: 15
 Best value: 12.46
 Best params: {
@@ -176,102 +176,102 @@ Best params: {
 }
 ```
 
-## 📈 結果生成原理
+## 📈 Result Generation Principles
 
-### 1. 圖表生成
+### 1. Chart Generation
 
-**支持的圖表類型**:
-1. **Equity Curves**: 淨值曲線比較
-2. **APR vs MDD Scatter**: 風險-收益散點圖
-3. **Fee vs Price PnL**: 費用與價格 PnL 分析
-4. **Sensitivity Heatmap**: 參數敏感性熱圖
-5. **Gas vs Frequency Contour**: Gas 費用與頻率分析
-6. **IL Curve**: 無常損失曲線
-7. **LVR Estimates**: LVR 估算圖
+**Supported Chart Types**:
+1. **Equity Curves**: Equity curve comparison
+2. **APR vs MDD Scatter**: Risk-return scatter plot
+3. **Fee vs Price PnL**: Fee vs price PnL analysis
+4. **Sensitivity Heatmap**: Parameter sensitivity heatmap
+5. **Gas vs Frequency Contour**: Gas cost vs frequency analysis
+6. **IL Curve**: Impermanent loss curve
+7. **LVR Estimates**: LVR estimation charts
 
-**圖表生成流程**:
+**Chart Generation Process**:
 ```python
-# 圖表生成器
+# Chart generator
 class PlotGenerator:
     def plot_equity_curves(self, results, save_path):
-        # 1. 數據準備
+        # 1. Data preparation
         strategies = self._extract_strategy_data(results)
         
-        # 2. 圖表創建
+        # 2. Chart creation
         fig, ax = plt.subplots(figsize=(12, 8))
         
-        # 3. 數據繪製
+        # 3. Data plotting
         for strategy_name, strategy_data in strategies.items():
             equity_curve = self._calculate_equity_curve(strategy_data)
             ax.plot(equity_curve, label=strategy_name)
         
-        # 4. 樣式設置
+        # 4. Style settings
         ax.set_title(f'Equity Curves - {self.pool}')
         ax.legend()
         
-        # 5. 保存圖表
+        # 5. Save chart
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
 ```
 
-### 2. 報告生成
+### 2. Report Generation
 
-**策略記錄**:
-- **JSON 格式**: 完整的策略參數和性能數據
-- **CSV 摘要**: 關鍵指標的表格形式
-- **文本報告**: 人類可讀的策略說明
+**Strategy Records**:
+- **JSON Format**: Complete strategy parameters and performance data
+- **CSV Summary**: Key metrics in tabular format
+- **Text Report**: Human-readable strategy description
 
-**目錄組織**:
+**Directory Organization**:
 ```
 results/
-├── {幣種}_{時間尺度}_{時間戳}/
-│   ├── strategy_record_{時間戳}.json
-│   ├── strategy_summary_{時間戳}.csv
-│   └── strategy_report_{時間戳}.txt
-├── common/                    # 通用文件
-└── INDEX.md                  # 目錄索引
+├── {trading_pair}_{timeframe}_{timestamp}/
+│   ├── strategy_record_{timestamp}.json
+│   ├── strategy_summary_{timestamp}.csv
+│   └── strategy_report_{timestamp}.txt
+├── common/                    # Common files
+└── INDEX.md                  # Directory index
 ```
 
-## 🚀 快速開始
+## 🚀 Quick Start
 
-### 一行命令回測新CSV
+### One-Command Backtesting
 
 ```bash
-# 最推薦：使用腳本回測
+# Most recommended: Use script for backtesting
 ./run_single.sh BTCUSDC 1d 50
 
-# 直接命令回測
+# Direct command backtesting
 python run.py full --pool BTCUSDC --freq 1d --n-trials 50
 ```
 
-**參數說明**：
-- `BTCUSDC`: 替換為您的幣種代碼
-- `1d`: 數據頻率 (1d=日線, 1h=小時線)  
-- `50`: 優化試驗次數
+**Parameter Description**:
+- `BTCUSDC`: Replace with your trading pair code
+- `1d`: Data frequency (1d=daily, 1h=hourly)  
+- `50`: Optimization trial count
 
-**結果位置**：
-- 📊 圖表：`reports/figs/btcusdc/`
-- 📈 數據：`results/strategy_*_*.json`
-- 📋 報告：`results/strategy_report_*.txt`
+**Result Locations**:
+- 📊 Charts: `reports/figs/btcusdc/`
+- 📈 Data: `results/strategy_*_*.json`
+- 📋 Reports: `results/strategy_report_*.txt`
 
-### 🔗 整合Steer Intent Backtester策略
+### 🔗 Integration with Steer Intent Backtester Strategies
 
 ```bash
-# 比較AMM和Steer策略
+# Compare AMM and Steer strategies
 ./run_steer_comparison.sh BTCUSDC 1d
 
-# 或者直接運行
+# Or run directly
 python final_integration.py
 ```
 
-**整合功能**：
-- 🔄 同時測試AMM和Steer策略
-- 📊 生成策略比較報告
-- 🏆 找出最佳策略組合
-- 📈 支持多種策略類型比較
+**Integration Features**:
+- 🔄 Simultaneously test AMM and Steer strategies
+- 📊 Generate strategy comparison reports
+- 🏆 Find optimal strategy combinations
+- 📈 Support multiple strategy type comparisons
 
-### 📁 數據文件結構設置
+### 📁 Data File Structure Setup
 
-系統期望的數據文件結構：
+Expected data file structure:
 ```
 data/
 ├── BTCUSDC/
@@ -282,24 +282,24 @@ data/
     └── price_1d.csv
 ```
 
-**如果您有5年數據文件** (如 `data/5year_daily/ETHUSDC_1d_20200905_20250903.csv`)：
+**If you have 5-year data files** (e.g., `data/5year_daily/ETHUSDC_1d_20200905_20250903.csv`):
 
 ```bash
-# 創建目錄結構
+# Create directory structure
 mkdir -p data/ETHUSDC data/USDCUSDT
 
-# 創建符號鏈接 (推薦)
+# Create symbolic links (recommended)
 ln -sf ../5year_daily/ETHUSDC_1d_20200905_20250903.csv data/ETHUSDC/price_1d.csv
 ln -sf ../5year_daily/USDCUSDT_1d_20200905_20250903.csv data/USDCUSDT/price_1d.csv
 
-# 或者複製文件
+# Or copy files
 cp data/5year_daily/ETHUSDC_1d_20200905_20250903.csv data/ETHUSDC/price_1d.csv
 cp data/5year_daily/USDCUSDT_1d_20200905_20250903.csv data/USDCUSDT/price_1d.csv
 ```
 
-### 📊 回測結果示例
+### 📊 Backtesting Results Example
 
-**USDCUSDT 5年回測結果** (2020-2025):
+**USDCUSDT 5-Year Backtesting Results** (2020-2025):
 ```
 ┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━┓
 ┃ Strategy          ┃ APR (%) ┃ MDD (%) ┃ Sharpe ┃ Calmar ┃ Rebalances ┃
@@ -311,10 +311,10 @@ cp data/5year_daily/USDCUSDT_1d_20200905_20250903.csv data/USDCUSDT/price_1d.csv
 └───────────────────┴─────────┴─────────┴────────┴────────┴────────────┘
 ```
 
-**最佳參數**：
-- K寬度倍數: 1.96
-- 價格偏差閾值: 113.85 bps
-- 再平衡冷卻時間: 41小時
+**Best Parameters**:
+- K width multiplier: 1.96
+- Price deviation threshold: 113.85 bps
+- Rebalancing cooldown time: 41 hours
 
 ---
 

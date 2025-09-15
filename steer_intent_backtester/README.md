@@ -1,74 +1,80 @@
 # Steer Intent Backtester
 
-## 🎯 項目概述
+## 🎯 Project Overview
 
-Steer Intent Backtester 是一個生產級的 CLMM（集中流動性做市商）回測系統，專門用於評估「基於意圖的動態再平衡」策略與傳統方法的比較。系統實現了多種流動性管理策略，適用於 Uniswap V3 風格的 CLMM，無需依賴外部 API，提供完整的回測功能，包括真實的費用建模、滑點和 Gas 成本。
+Steer Intent Backtester is a production-grade CLMM (Concentrated Liquidity Market Maker) backtesting system specifically designed to evaluate "intent-based dynamic rebalancing" strategies compared to traditional methods. The system implements multiple liquidity management strategies suitable for Uniswap V3-style CLMM, without relying on external APIs, providing complete backtesting functionality including realistic fee modeling, slippage, and gas costs.
 
-## 🚀 核心功能
+## 🚀 Core Features
 
-- **多策略支持**: 經典再平衡、布林帶、肯特納通道、唐奇安通道、穩定錨定、流體比例管理
-- **多數據源**: Binance REST API、Binance Vision S3、Kraken REST API
-- **真實建模**: CLMM 位置估值、費用累積、滑點、Gas 成本
-- **完整指標**: APR、最大回撤、夏普比率、無常損失、LVR 代理
-- **可擴展架構**: 模組化設計，易於添加策略和數據源
+- **Multi-Strategy Support**: Classic rebalancing, Bollinger Bands, Keltner Channels, Donchian Channels, Stable anchoring, Fluid ratio management
+- **Multiple Data Sources**: Binance REST API, Binance Vision S3, Kraken REST API
+- **Realistic Modeling**: CLMM position valuation, fee accumulation, slippage, gas costs
+- **Complete Metrics**: APR, maximum drawdown, Sharpe ratio, impermanent loss, LVR proxy
+- **Scalable Architecture**: Modular design, easy to add strategies and data sources
 
-## 📊 策略類型
+## 📊 Strategy Types
 
-### 1. 經典策略 (Classic)
-- **寬度模式**: 百分比、倍數或靜態 tick 基礎
-- **觸發條件**: 中心偏離、範圍不活躍、百分比漂移、單向退出、時間流逝
-- **曲線類型**: 線性、高斯、Sigmoid、對數、買賣價差
+### 1. Classic Strategy
+- **Width Mode**: Percentage, multiplier, or static tick-based
+- **Trigger Conditions**: Center deviation, range inactivity, percentage drift, one-way exit, time elapsed
+- **Curve Types**: Linear, Gaussian, Sigmoid, logarithmic, bid-ask spread
 
-### 2. 通道倍數 (Channel Multiplier)
-- 圍繞當前價格的單一對稱百分比寬度，一個 LP 位置
+### 2. Channel Multiplier
+- Single symmetric percentage width around current price, one LP position
 
-### 3. 布林帶 (Bollinger Bands)
-- 公式: `Bands = SMA(n) ± k × Std(n)`
-- n: 回望期，k: 標準差倍數
+### 3. Bollinger Bands
+- Formula: `Bands = SMA(n) ± k × Std(n)`
+- n: lookback period, k: standard deviation multiplier
 
-### 4. 肯特納通道 (Keltner Channels)
-- 公式: `Bands = EMA(n) ± m × ATR(n)`
-- n: EMA 週期，m: ATR 倍數
+### 4. Keltner Channels
+- Formula: `Bands = EMA(n) ± m × ATR(n)`
+- n: EMA period, m: ATR multiplier
 
-### 5. 唐奇安通道 (Donchian Channels)
-- 上軌: N 期內最高價，下軌: N 期內最低價
-- 可選寬度倍數
+### 5. Donchian Channels
+- Upper band: N-period highest price, Lower band: N-period lowest price
+- Optional width multiplier
 
-### 6. 穩定策略 (Stable)
-- 圍繞計算「錨定」的多位置策略
-- 使用高斯或線性曲線，可配置 bin 數量
+### 6. Stable Strategy
+- Multi-position strategy around calculated "anchor"
+- Uses Gaussian or linear curves, configurable bin count
 
-### 7. 流體策略 (Fluid)
-- 維持價值比例朝向 ideal_ratio
-- 三種狀態：默認/不平衡/單邊
-- 位置類型：默認/限價/擴展
+### 7. Fluid Strategy
+- Maintains value ratio towards ideal_ratio
+- Three states: default/imbalanced/one-sided
+- Position types: default/limit/extended
 
-## 🏗️ 系統架構
+## 🏗️ System Architecture
 
 ```
 steer_intent_backtester/
-├── steerbt/                    # 核心模組
+├── steerbt/                    # Core modules
 │   ├── __init__.py
-│   ├── data/                   # 數據獲取模組
-│   │   ├── binance.py         # Binance API 接口
-│   │   └── kraken.py          # Kraken API 接口
-│   ├── uv3_math.py            # CLMM 位置估值
-│   ├── portfolio.py           # 投資組合會計
-│   ├── triggers.py            # 再平衡觸發器
-│   ├── curves.py              # 流動性分佈曲線
-│   ├── strategies/            # 策略實現
-│   │   ├── base.py           # 基礎策略類
-│   │   ├── classic.py        # 經典策略
-│   │   ├── bollinger.py      # 布林帶策略
-│   │   ├── keltner.py        # 肯特納策略
-│   │   └── ...               # 其他策略
-│   ├── backtester.py         # 主回測引擎
-│   ├── metrics.py            # 性能指標
-│   └── reports.py            # 圖表和導出
-├── cli.py                     # 命令行界面
-├── data/                      # 數據存儲
-├── reports/                   # 回測報告
-└── tests/                     # 測試文件
+│   ├── data/                   # Data acquisition modules
+│   │   ├── binance.py         # Binance API interface
+│   │   └── kraken.py          # Kraken API interface
+│   ├── uv3_math.py            # CLMM position valuation
+│   ├── portfolio.py           # Portfolio accounting
+│   ├── triggers.py            # Rebalancing triggers
+│   ├── curves.py              # Liquidity distribution curves
+│   ├── strategies/            # Strategy implementations
+│   │   ├── base.py           # Base strategy class
+│   │   ├── classic.py        # Classic strategy
+│   │   ├── bollinger.py      # Bollinger Bands strategy
+│   │   ├── keltner.py        # Keltner strategy
+│   │   ├── ml_strategy.py    # ML-enhanced strategies
+│   │   ├── quantum_strategy.py # Quantum-enhanced strategies
+│   │   └── ...               # Other strategies
+│   ├── ml/                    # Machine Learning modules
+│   │   ├── models.py         # ML models
+│   │   ├── quantum_models.py # Quantum models
+│   │   └── feature_engineering.py # Feature engineering
+│   ├── backtester.py         # Main backtesting engine
+│   ├── metrics.py            # Performance metrics
+│   └── reports.py            # Charts and exports
+├── cli.py                     # Command line interface
+├── data/                      # Data storage
+├── reports/                   # Backtesting reports
+└── tests/                     # Test files
 ```
 
 ## 📥 數據獲取原理
@@ -293,23 +299,23 @@ reports/
 └── summary_{run_id}.txt            # 摘要報告
 ```
 
-## 🛠️ 使用方法
+## 🛠️ Usage Guide
 
-### 1. 環境設置
+### 1. Environment Setup
 
 ```bash
-# 創建虛擬環境
+# Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
 
-# 安裝依賴
+# Install dependencies
 pip install -e .
 ```
 
-### 2. 數據獲取
+### 2. Data Acquisition
 
 ```bash
-# 基本數據獲取
+# Basic data fetching
 python cli.py fetch \
   --source binance \
   --symbol ETHUSDC \
@@ -318,7 +324,7 @@ python cli.py fetch \
   --end 2024-01-31 \
   --out data/ETHUSDC_1h.csv
 
-# 批量數據獲取
+# Batch data fetching
 for pair in ETHUSDC BTCUSDC USDCUSDT; do
   python cli.py fetch \
     --source binance \
@@ -330,10 +336,10 @@ for pair in ETHUSDC BTCUSDC USDCUSDT; do
 done
 ```
 
-### 3. 運行回測
+### 3. Running Backtests
 
 ```bash
-# 布林帶策略回測
+# Bollinger Bands strategy backtest
 python cli.py backtest \
   --pair ETHUSDC \
   --interval 1h \
@@ -344,7 +350,7 @@ python cli.py backtest \
   --fee-bps 5 \
   --liq-share 0.002
 
-# 肯特納策略回測
+# Keltner Channels strategy backtest
 python cli.py backtest \
   --pair ETHUSDC \
   --interval 1h \
@@ -354,22 +360,44 @@ python cli.py backtest \
   --m 2.0 \
   --fee-bps 5 \
   --liq-share 0.002
+
+# ML Bollinger strategy backtest
+python cli.py backtest \
+  --pair ETHUSDC \
+  --interval 1h \
+  --strategy ml_bollinger \
+  --data-file data/ETHUSDC_1h.csv \
+  --n 20 \
+  --k 2.0 \
+  --fee-bps 5 \
+  --liq-share 0.002
+
+# Quantum Bollinger strategy backtest
+python cli.py backtest \
+  --pair ETHUSDC \
+  --interval 1h \
+  --strategy quantum_bollinger \
+  --data-file data/ETHUSDC_1h.csv \
+  --n 20 \
+  --k 2.0 \
+  --fee-bps 5 \
+  --liq-share 0.002
 ```
 
-### 4. 生成報告
+### 4. Generate Reports
 
 ```bash
-# 生成報告（使用回測返回的 run_id）
+# Generate reports (using run_id returned from backtest)
 python cli.py report --run-id <run_id>
 ```
 
-### 5. 查看策略信息
+### 5. View Strategy Information
 
 ```bash
-# 列出可用策略
+# List available strategies
 python cli.py strategies
 
-# 列出可用曲線
+# List available curves
 python cli.py curves
 ```
 
